@@ -1,12 +1,20 @@
 <?php 
 
 class db{
-    function getIntance(){
-        return new PDO("mysql:host=localhost:dbname=bioteca","root","");
+    static $instance;
+    public static function getInstance(){
+        if(self::$instance != null){
+            return self::$instance;
+        }
+        self::$instance = new PDO("mysql:host=localhost:dbname=bioteca","root","");
+
+        return self::$instance;
 
     }
 }
 
-db::getInstance();
+$a = db::getInstance();
+$b = db::getInstance();
+
 
 ?>
