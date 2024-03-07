@@ -7,3 +7,4 @@ interface Repository{
     public static function ubdate($obj);
     public static function delete($id);
 }
+?>

@@ -1,6 +1,11 @@
 <?php
 include_once("include/factory.php");
 
-$autor = AutorRepository::get(1);
+$autor = Factory::autor();
+$autor ->setNome('igor');
+$autor ->setData_inclusao(date(10-01-25));
+$autor ->setInclusao_funcionario(1);
 
-print_r($autor);
+AutorRepository::insert( $autor );
+$autor_up =  AutorRepository::get(1);
+
