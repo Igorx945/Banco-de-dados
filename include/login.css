@@ -4,14 +4,15 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background: radial-gradient(circle, rgb(18, 45, 185) 0%, rgb(182, 40, 68) 100%);
   }
   
   .container {
     border: 1px solid #ccc;
     padding: 20px;
-    background-color: #fff;
+    background-color: #7a7070;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 2em;
     width: 300px;
   }
   
@@ -21,7 +22,7 @@ body {
   }
   
   .container label {
-    display: block;
+    display: flex;
     margin-bottom: 5px;
   }
   

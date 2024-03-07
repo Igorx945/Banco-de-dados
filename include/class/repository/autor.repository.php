@@ -1,5 +1,5 @@
 <?php
-class AutorRepository implements Repository{
+class AutorRepository implements AutorRepository{
     public static function listAll(){
         $db = DB::getInstance();
 
