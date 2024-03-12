@@ -1,4 +1,17 @@
-body {
+<?php
+include_once("include/factory.php");
+
+if(!Auth::isAuthenticated()){
+    header( "location: index.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,3 +61,21 @@ body {
   .container input[type="submit"]:hover {
     background-color: #45a049;
   }
+  </style>
+  
+  </head>
+  <body>
+    <div class="container">
+      <h2>Login</h2>
+      <form action="/login" method="post">
+        <label for="cpf">CPF:</label><br>
+        <input type="text" id="cpf" name="cpf" required><br>
+        <label for="password">Senha:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Enviar">
+      </form>
+    </div>
+  </body>
+</html>
+
+
