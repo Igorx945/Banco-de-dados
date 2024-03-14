@@ -1,8 +1,8 @@
 <?php
-include_once("include/factory.php");
+include_once('include/factory.php');
 
 if(!Auth::isAuthenticated()){
-    header( "location: index.php");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -67,7 +67,7 @@ if(!Auth::isAuthenticated()){
   <body>
     <div class="container">
       <h2>Login</h2>
-      <form action="/login" method="post">
+      <form method="POST" action="jogar.php">
         <label for="cpf">CPF:</label><br>
         <input type="text" id="cpf" name="cpf" required><br>
         <label for="password">Senha:</label><br>

@@ -5,8 +5,9 @@ class FuncionarioRepository implements Repository
     {
         $db = DB::getInstance();
 
-        $sql = "SELECT * FROM table WHERE id=:id";
+        $sql = "SELECT * FROM funcionario WHERE cpf=:cpf";
         $query = $db->prepare($sql);
+        $query->bindParam(":cpf",$cpf);
         $query->execute();
 
         $list = array();
