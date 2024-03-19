@@ -3,41 +3,53 @@
 class EmprestimoRepository implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
-        $sql = "SELECT * FROM autor";
+        $sql = "SELECT * FROM emprestimo WHERE id = :id";
         $query = $db->prepare($sql);
         $query->execute();
 
         $list = array();
         foreach($query->fetchAll(PDO::FETCH_OBJ) as  $row){
-            $autor = new Autor;
-            $autor->setId($row->id);
-            $autor->setNome($row->nome);
-            $autor->setData_inclusao($row->dt_inclusao);
-            $autor->setData_alteracao($row->dt_alteracao);
-            $autor->setInclusao_funcionario($row->inclusao_funcionario_id);
-            $autor->setAlteracao_funcionario_id($row->alteracao_funcionario_id);
-            $list[] = $autor;
+            $emprestimo = new Emprestimo;
+            $emprestimo->setId($row->id);
+            $emprestimo->setLivroId($row->livro_id);
+            $emprestimo->setClienteId($row->cliente_id);
+            $emprestimo->setDataVencimento($row->data_vencimento);
+            $emprestimo->setDataInclusao($row->data_inclusao);
+            $emprestimo->setDataAlteracao($row->data_alteracao);
+            $emprestimo->setDataRenovacao($row->data_renovacao);
+            $emprestimo->setDataDevolucao($row->data_devolucao);
+            $emprestimo->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
+            $emprestimo->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
+            $emprestimo->setRenovacaoFuncionarioId($row->renovacao_funcionario_id);
+            $emprestimo->setDevolucaoFuncionarioId($row->devolucao_funcionario_id);
+            $list[] = $emprestimo;
         }
         return $list;
     }
     public static function get($id){
         $db = DB::getInstance();
-        $sql = "SELECT * FROM autor WHERE id = :id";
+        $sql = "SELECT * FROM emprestimo WHERE id = :id";
         $query = $db->prepare($sql);
         $query->bindParam(":id",$id);
         $query->execute();
     
         if($query->rowCount() > 0){
             $row = $query->fetch(PDO::FETCH_OBJ);
-            $autor = new Autor;
-            $autor->setId($row->id);
-            $autor->setNome($row->nome);
-            $autor->setData_inclusao($row->dt_inclusao);
-            $autor->setData_alteracao($row->dt_alteracao);
-            $autor->setInclusao_funcionario($row->inclusao_funcionario_id);
-            $autor->setAlteracao_funcionario_id($row->alteracao_funcionario_id);
-            return $autor;
-        }
+            $emprestimo = new Emprestimo;
+            $emprestimo->setId($row->id);
+            $emprestimo->setLivroId($row->livro_id);
+            $emprestimo->setClienteId($row->cliente_id);
+            $emprestimo->setDataVencimento($row->data_vencimento);
+            $emprestimo->setDataInclusao($row->data_inclusao);
+            $emprestimo->setDataAlteracao($row->data_alteracao);
+            $emprestimo->setDataRenovacao($row->data_renovacao);
+            $emprestimo->setDataDevolucao($row->data_devolucao);
+            $emprestimo->setInclusaoFuncionarioId($row->inclusao_funcionario_id);
+            $emprestimo->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
+            $emprestimo->setRenovacaoFuncionarioId($row->renovacao_funcionario_id);
+            $emprestimo->setDevolucaoFuncionarioId($row->devolucao_funcionario_id);
+            return $emprestimo;
+        };
         return null;
     }
     public static function insert($obj){
@@ -70,11 +82,9 @@ class EmprestimoRepository implements Repository{
     }
     public static function delete($id){
         $db = DB::getInstance();
-        $sql = "DELETE FROM emprestimo WHERE id=:id";
-
-        $query = $db->prepare($sql);
+        $sql = "DELETE FROM autor WHERE id=:id";
+        $query=$db->prepare($sql);
         $query->bindValue(":id",$id);
         $query->execute();
     }
 }
-?>

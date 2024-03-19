@@ -1,4 +1,5 @@
 <?php
-include_once("include/factory.php");
+include_once('include/factory.php');
+
 Auth::logout();
-header("Location: login.php");
+header('location: login.php');

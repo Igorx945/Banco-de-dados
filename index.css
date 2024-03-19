@@ -3,37 +3,13 @@
 	margin: 0px;
 	box-sizing: border-box;
 }
-nav {
-    position: absolute;
-    top: 110px;
-    right: 0;
-}
-nav li {
-    display: inline;
-    margin: 0 0 0 15px;
-}
 
-nav a {
-    text-transform: uppercase;
-    color: #000000;
-    font-weight: bold;
-    font-size: 22px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: #C78C19;
-    text-decoration: underline;
-}
     body {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: radial-gradient(circle, rgb(18, 45, 185) 0%, rgb(182, 40, 68) 100%);
+    background: radial-gradient(circle, rgb(241, 243, 255) 0%, rgb(182, 40, 68) 100%);
   }
-.container{
-    display: flex;
-    text-align: center;
-}
+

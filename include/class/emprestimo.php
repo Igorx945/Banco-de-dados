@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Emprestimo{
     private $id;
@@ -14,7 +14,6 @@ class Emprestimo{
     private $renovacao_funcionario_id;
     private $devolucao_funcionario_id;
 
-    
     public function getId(){
         return $this->id;
     }
