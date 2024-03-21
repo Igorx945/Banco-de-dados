@@ -18,6 +18,6 @@ if(Auth::isAuthenticated()){
     exit();
 }
 
-header("Location: login.php");
+header("Location: login.php?message=".$auth);
     exit();
 

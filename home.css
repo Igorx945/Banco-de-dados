@@ -1,0 +1,40 @@
+.container{
+    margin: 30px auto;
+}
+#jobs{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.block{
+    padding: 20px;
+    min-width: 20%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.422);
+    height: 10vh;
+    cursor: pointer;
+}
+.b1{border-right: 10px solid green;}
+.b2{border-right: 10px solid rgb(0, 128, 128);}
+.b3{border-right: 10px solid rgb(100, 0, 128);}
+.b4{border-right: 10px solid rgb(128, 0, 21);}
+.cp{
+    background-color: chocolate;
+    height: 10vh;
+    width: 20px;
+}
+.text{
+    width: calc(100%-20px);
+}
+.block p{
+    padding: 0px;
+    margin: 0px;;
+}
+.block::before{
+    content: '';
+    background-color: chartreuse;
+    width: 20px;
+    height: 10vh;
+}

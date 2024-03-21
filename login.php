@@ -71,7 +71,7 @@ if(Auth::isAuthenticated()){
         <label for="cpf">CPF:</label><br>
         <input type="text" id="cpf" name="cpf" required><br>
         <label for="password">Senha:</label><br>
-        <input type="password" id="password" name="password" required><br>
+        <input type="password" id="password" name="senha" required><br>
         <input type="submit" value="Enviar">
       </form>
     </div>

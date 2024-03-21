@@ -1,7 +1,30 @@
+
+<style>
+    header {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    
+
+
+    #ul {
+        display: flex;
+    }
+
+
+    #sair {
+        padding: 5px 10px;
+        border-radius: 0;
+    }
+</style>
+
+
 <header>
     <nav>
         <div id="headTitle" onclick="link('index.php')">
-            <img src="img/book.png" alt="">
             <h1>Bliobliteca</h1>
         </div>
         <div id="ul">
@@ -41,5 +64,5 @@
 
         </div>
     </nav>
-    <a href="logout.php" id="sair">Sair</a>
+    <a href="login.php" id="sair">Sair</a>
 </header>
