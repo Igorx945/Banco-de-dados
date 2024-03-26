@@ -1,6 +1,6 @@
 <?php
 
-class FuncionarioRepository implements Repository{
+class FuncionarioRepos implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM funcionario WHERE id = :id";

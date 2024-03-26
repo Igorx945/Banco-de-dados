@@ -23,7 +23,7 @@ $autor->setNome($_POST['nome']);
 $autor->setinclusaoFuncionarioId($user->getID());
 $autor->setDataInclusao(date('Y-d-m H:i:s'));
 
-$autor_retorno = AutorRepository::insert($autor);
+$autor_retorno = AutorRepos::insert($autor);
 
 if($autor_retorno > 0){
     header("Location: autor_editar.php?id=".$autor_retorno);

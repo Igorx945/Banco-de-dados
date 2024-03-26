@@ -12,11 +12,11 @@ if (!Auth::isAuthenticated()) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUTOR > LISTAGEM</title>
+  <title>Funcionario Listagem</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style/listagensIndx.css">
-  <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="listagensIndx.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -24,8 +24,8 @@ if (!Auth::isAuthenticated()) {
   <main>
     <div class="container">
       <div id="listagem">
-        <h2>AUTORES > LISTAGEM</h2> 
-        <button class="novo" onclick="link('autor_novo.php')">Novo Autor</button>
+        <h2>FUNCIONARIO > LISTAGEM</h2>
+        <button class="novo">Novo Funcionario</button>
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -33,24 +33,31 @@ if (!Auth::isAuthenticated()) {
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>CPF</th>
+              <th>Telefone</th>
+              <th>Email</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-              <?php
-              foreach(AutorRepository::listAll() as $autor){
-              ?>
+            <?php
+            foreach (FuncionarioRepos::listAll() as $funcionario) {
+            ?>
               <tr>
-                <td><?php echo $autor->getId(); ?></td>
-                <td><?php echo $autor->getNome(); ?></td>
+                <td><?php echo $funcionario->getId(); ?></td>
+                <td><?php echo $funcionario->getNome(); ?></td>
+                <td><?php echo $funcionario->getCpf(); ?></td>
+                <td><?php echo $funcionario->getTelefone(); ?></td>
+                <td><?php echo $funcionario->getEmail(); ?></td>
+
                 <td>
-                  <a href="autor_editar.php?id=<?php echo $autor->getId(); ?>" id="editar">Editar</a>
+                  <a href="#" id="editar">Editar</a>
                   <a href="#" id="deletar">Deletar</a>
                 </td>
               </tr>
-              <?php
-              }
-              ?>
+            <?php
+            }
+            ?>
           </tbody>
         </table>
       </div>

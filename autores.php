@@ -56,7 +56,7 @@ if(Auth::isAuthenticated()){
             </td>
             <tbody>
               <?php
-                foreach(AutorRepository::listAll() as $autor) {
+                foreach(AutorRepos::listAll() as $autor) {
                   ?>
                   <tr>
                     <td><?php echo $autor->getId(); ?></td>

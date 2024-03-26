@@ -15,8 +15,8 @@ if (!Auth::isAuthenticated()) {
   <title>Livro listagem</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style/listagensIndx.css">
-  <link rel="stylesheet" href="style/index.css">
+  <link rel="stylesheet" href="listagensIndx.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@ if (!Auth::isAuthenticated()) {
           </thead>
           <tbody>
               <?php
-              foreach(LivroRepository::listAll() as $livro){
+              foreach(LivroRepos::listAll() as $livro){
               ?>
               <tr>
                 <td><?php echo $livro->getId(); ?></td>
@@ -50,8 +50,10 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $livro->getGenero(); ?></td>
                 <td><?php echo $livro->getIsbn(); ?></td>
                 <td>
-                  <a href="#" id="editar">Editar</a>
-                  <a href="#" id="deletar">Deletar</a>
+                <a href="livro_editar.php?id=<?php echo $livro->getId(); ?>" id="editar">Editar</a>
+                  <?php if(EmprestimoRepos::countByLivro($livro->getId()) == 0){ ?>
+                  <a href="livro_excluir.php?id=<?php echo $livro->getId(); ?>"  id="deletar">Deletar</a>
+                <?php } ?>
                 </td>
               </tr>
               <?php

@@ -16,10 +16,10 @@
     height: 10vh;
     cursor: pointer;
 }
-.b1{border-right: 10px solid green;}
-.b2{border-right: 10px solid rgb(0, 128, 128);}
+.b1{border-right: 10px solid rgb(58, 225, 58);}
+.b2{border-right: 10px solid rgb(3, 243, 243);}
 .b3{border-right: 10px solid rgb(100, 0, 128);}
-.b4{border-right: 10px solid rgb(128, 0, 21);}
+.b4{border-right: 10px solid rgb(201, 13, 44);}
 .cp{
     background-color: chocolate;
     height: 10vh;
@@ -34,7 +34,7 @@
 }
 .block::before{
     content: '';
-    background-color: chartreuse;
+    background-color: rgb(124, 205, 43);
     width: 20px;
     height: 10vh;
 }

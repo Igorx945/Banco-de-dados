@@ -6,35 +6,39 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
-if (!isset($_POST['id'])) {
-    header("location: autor_listagem.php");
+$user = Auth::getUser();
+
+if(!isset($_POST['id'])){
+    header("location: autor_lista.php?1");
     exit();
 }
-if ($_POST["id"] == "" || $_POST["id"] == null) {
-    header("location: autor_listagem.php");
+if($_POST["id"] == "" || $_POST["id"] == null){
+    header("location: autor_lista.php?2");
+    exit();
+}
+$autor = AutorRepos::get($_POST["id"]);
+if(!$autor){
+    header("location: autor_lista.php?3");
     exit();
 }
 
-$autor = AutorRepository::get($_POST["id"]);
-
-if (!$autor) {
-    header("location: autor_listagem.php");
+if(!isset($_POST['nome'])){
+    header("Location: autor_novo.php?id=".$autor->getId());
+    exit();
+}
+if($_POST["nome"] == "" || $_POST["nome"] == null){
+    header("Location: autor_novo.php?id=".$autor->getId());
     exit();
 }
 
-if (!isset($_POST['nome'])) {
-    header("location: autor_editar.php?>".$autor->getId());
-    exit();
-}
-if ($_POST["nome"] == "" || $_POST["nome"] == null) {
-    header("location: autor_editar.php?>".$autor->getId());
-    exit();
-}
+
 
 $autor->setNome($_POST['nome']);
 $autor->setAlteracaoFuncionarioId($user->getID());
 $autor->setDataAlteracao(date('Y-d-m H:i:s'));
 
-AutorRepository::update($autor);
+AutorRepos::update($autor);
+
+
 
 header("Location: autor_editar.php?id=".$autor->getId());

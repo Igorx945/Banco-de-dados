@@ -1,6 +1,6 @@
 <?php
 
-class LivroRepository implements Repository{
+class LivroRepos implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM livro";
@@ -81,4 +81,19 @@ class LivroRepository implements Repository{
         $query->bindValue(":id",$id);
         $query->execute();
     }
+
+
+public static function countByAutor($autor_id){
+    $db = DB::getInstance();
+
+
+  $sql = "SELECT count(*) FROM livro WHERE  autor_id = :autor_id";
+
+  $query = $db->prepare($sql);
+  $query->bindValue(":autor_id", $autor_id);
+  $query->execute();
+
+  $row = $query->fetch(PDO::FETCH_ASSOC);
+  return  $row["count(*)"];
+}
 }

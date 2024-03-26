@@ -1,6 +1,6 @@
 <?php
 
-class ClienteRepository implements Repository{
+class ClienteRepos implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM cliente WHERE id = :id";

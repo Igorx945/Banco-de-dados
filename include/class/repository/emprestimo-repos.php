@@ -1,6 +1,6 @@
 <?php
 
-class EmprestimoRepository implements Repository{
+class EmprestimoRepos implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo WHERE id = :id";
