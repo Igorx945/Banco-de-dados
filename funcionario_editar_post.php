@@ -16,32 +16,32 @@ if($_POST["id"] == "" || $_POST["id"] == null){
     header("location: funcionario_lista.php?2");
     exit();
 }
-$funcio = FuncionarioRepos::get($_POST["id"]);
-if(!$funcio){
+$funcionario = FuncionarioRepos::get($_POST["id"]);
+if(!$funcionario){
     header("location: funcionario_lista.php");
     exit();
 }
 
 if(!isset($_POST['nome'])){
-    header("Location: funcionario_novo.php?id=".$funcio->getId());
+    header("Location: funcionario_novo.php?id=".$funcionario->getId());
     exit();
 }
 if($_POST["nome"] == "" || $_POST["nome"] == null){
-    header("Location: funcionario_novo.php?id=".$funcio->getId());
+    header("Location: funcionario_novo.php?id=".$funcionario->getId());
     exit();
 }
 
 
 
-$funcio->setNome($_POST['nome']);
-$funcio->setCpf($_POST['cpf']);
-$funcio->setTelefone($_POST['telefone']);
-$funcio->setSenha($_POST['senha']);
-$funcio->setEmail($_POST['email']);
-$funcio->setAlteracaoFuncionarioId($user->getId());
-$funcio->setDataAlteracao(date('Y-d-m H:i:s'));
+$funcionario->setNome($_POST['nome']);
+$funcionario->setCpf($_POST['cpf']);
+$funcionario->setTelefone($_POST['telefone']);
+$funcionario->setSenha($_POST['senha']);
+$funcionario->setEmail($_POST['email']);
+$funcionario->setAlteracaoFuncionarioId($user->getId());
+$funcionario->setDataAlteracao(date('Y-d-m H:i:s'));
 
-FuncionarioRepos::update($funcio);
+FuncionarioRepos::update($funcionario);
 
 
 

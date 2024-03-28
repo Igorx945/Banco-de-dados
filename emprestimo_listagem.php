@@ -51,8 +51,10 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $funcionario->getEmail(); ?></td>
 
                 <td>
-                  <a href="#" id="editar">Editar</a>
-                  <a href="#" id="deletar">Deletar</a>
+                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" id="editar">Editar</a>
+                  <?php if(LivroRepos::countByAutor($funcionario->getId()) == 0){ ?>
+                  <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>"  id="deletar">Deletar</a>
+                <?php } ?>
                 </td>
               </tr>
             <?php

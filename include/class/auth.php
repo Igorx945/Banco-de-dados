@@ -3,7 +3,7 @@
 class Auth{
     private static $expires_time = 1200;
     public static function login($cpf, $senha){
-        $funcionario = FuncionarioRepository::getByCPF($cpf);
+        $funcionario = FuncionarioRepos::getByCPF($cpf);
         if($funcionario){
             if($funcionario->checkSenha($senha)){
                 $_SESSION['is_authenticated'] = true;
@@ -38,7 +38,7 @@ class Auth{
 
     public static function getUser(){
         if(self::isAuthenticated()){
-            return  FuncionarioRepository::get($_SESSION['funcionario_id']);
+            return  FuncionarioRepos::get($_SESSION['funcionario_id']);
 
         }
         return null;

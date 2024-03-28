@@ -2,7 +2,7 @@
 include_once('include/factory.php');
 
 if(Auth::isAuthenticated()){
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 ?>
@@ -62,8 +62,10 @@ if(Auth::isAuthenticated()){
                     <td><?php echo $autor->getId(); ?></td>
                     <td><?php echo $autor->getNome(); ?></td>
                     <td>
-                    <a href="#" class="btn btn-info">Editar</a>
-                    <a href="#" class="btn btn-danger">Deletar</a>
+                    <a href="autor_editar.php?id=<?php echo $autor->getId(); ?>" id="editar">Editar</a>
+                  <?php if(LivroRepos::countByAutor($autor->getId()) == 0){ ?>
+                  <a href="autor_excluir.php?id=<?php echo $autor->getId(); ?>"  id="deletar">Deletar</a>
+                <?php } ?>
                     </td>
                   </tr>
                   <?php

@@ -25,7 +25,7 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
       <div id="listagem">
         <h2>CLIENTES > LISTAGEM</h2>
-        <button class="novo">Novo Cliente</button>
+        <button class="novo" onclick="link('cliente_novo.php')">Novo Cliente</button>
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -54,8 +54,10 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $cliente->getRg(); ?></td>
                 <td><?php echo $cliente->getDataNascimento(); ?></td>
                 <td>
-                  <a href="#" id="editar">Editar</a>
+                  <a href="clienteEditar.php?id=<?php echo $cliente->getId(); ?>" id="editar">Editar</a>
+                  <?php if(LivroRepos::countByClientes($cliente->getId()) == 0) { ?>
                   <a href="#" id="deletar">Deletar</a>
+                  <?php } ?>
                 </td>
               </tr>
               <?php
@@ -66,6 +68,8 @@ if (!Auth::isAuthenticated()) {
       </div>
     </div>
   </main>
+  <script src="index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 </html>
