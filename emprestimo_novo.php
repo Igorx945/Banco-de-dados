@@ -16,17 +16,17 @@ if (!Auth::isAuthenticated()) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="novoAutor.css">
 </head>
 
 <body>
     <?php include("include/menu.php") ?>
     <main>
         <div class="container">
-            <h2>FUNCIONARIO > Novo</h2>
+            <h2>EMPRESTIMO > Novo</h2>
             <div class="row mt-4">
                 <div class="col-md-12">
-                    <form action="funcionario_novo_post.php" method="POST">
+                    <form action="emprestimo_nome_post.php" method="POST">
                         <div class="md-3">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" name="nome" id="nome" class="form-control">

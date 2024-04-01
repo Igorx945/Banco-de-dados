@@ -58,7 +58,7 @@
         return $this->data_inclusao;
     }
     public function setDataInclusao($data_inclusao){
-        $this->id = $data_inclusao;
+        $this->data_inclusao = $data_inclusao ;
     }
     public function getDataAlteracao(){
         return $this->data_alteracao;
@@ -70,7 +70,7 @@
         return $this->inclusao_funcionario_id;
     }
     public function setInclusaoFuncionarioId($inclusao_funcionario_id){
-        $this->id = $inclusao_funcionario_id;
+        $this->inclusao_funcionario_id = $inclusao_funcionario_id;
     }
     public function getAlteracaoFuncionarioId(){
         return $this->alteracao_funcionario_id;

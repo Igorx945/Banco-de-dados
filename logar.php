@@ -14,7 +14,7 @@ if($cpf == "" || $senha ==""){
 }
 $auth = Auth::login($cpf, $senha);
 if(Auth::isAuthenticated()){
-    header("Location: logar.php");
+    header("Location: index.php");
     exit();
 }
 

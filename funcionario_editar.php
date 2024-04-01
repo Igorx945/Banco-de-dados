@@ -7,18 +7,18 @@ if (!Auth::isAuthenticated()) {
 }
 
 if (!isset($_GET['id'])) {
-    header("Location: funcionario_lista.php?1");
+    header("Location: funcionario.php?1");
     exit();
 }
 if ($_GET['id'] == '' || $_GET['id'] == null) {
-    header("Location: funcionario_lista.php?2");
+    header("Location: funcionario.php?2");
     exit();
 }
 
 $funcionario = FuncionarioRepos::get($_GET['id']);
 
 if (!$funcionario) {
-    header("Location: funcionario_lista.php?3");
+    header("Location: funcionario.php?3");
     exit();
 }
 ?>

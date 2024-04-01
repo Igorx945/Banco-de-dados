@@ -55,7 +55,7 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $cliente->getDataNascimento(); ?></td>
                 <td>
                   <a href="clienteEditar.php?id=<?php echo $cliente->getId(); ?>" id="editar">Editar</a>
-                  <?php if(LivroRepos::countByClientes($cliente->getId()) == 0) { ?>
+                  <?php if(LivroRepos::countByAutor($cliente->getId()) == 0) { ?>
                   <a href="#" id="deletar">Deletar</a>
                   <?php } ?>
                 </td>

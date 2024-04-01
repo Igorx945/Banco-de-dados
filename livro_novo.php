@@ -16,14 +16,14 @@ if (!Auth::isAuthenticated()) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="novoAutor.css">
+    <link rel="stylesheet" href="novo.css">
 </head>
 
 <body>
     <?php include("include/menu.php") ?>
     <main>
         <div class="container">
-            <h2><strong onclick="link('livro_lista.php')">LIVRO</strong> > Novo</h2>
+            <h2><strong onclick="link('livros.php')">LIVRO</strong> > Novo</h2>
             <div class="row mt-4">
                 <div class="col-md-12">
                     <form action="livro_novo_post.php" method="POST">

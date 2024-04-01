@@ -94,7 +94,7 @@
         $this->alteracao_funcionario_id = $alteracao_funcionario_id;
     }
     public function checkSenha($senha){
-        $senha = hash('sha256',$senha);
+        $senha = hash("sha256",$senha);
         if($senha == $this->senha){
             return true;
         }

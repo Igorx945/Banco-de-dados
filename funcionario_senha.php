@@ -41,7 +41,7 @@ if (!$funcionario) {
     <main>
         <div class="container">
             <h2>funcionario > Editar</h2>
-            <button class="voltar"><a href="funcionario.php">Voltar</a></button>
+            <h2><strong onclick="link('funcionarios.php')">Funcionario</strong> > Novo</h2>
             <div class="row mt-4">
                 <div class="col-md-12">
                     <form action="funcionario_senha_post.php" method="POST"> 
