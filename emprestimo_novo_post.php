@@ -7,34 +7,45 @@ if (!Auth::isAuthenticated()) {
 }
 
 $user = Auth::getUser();
-echo('5');
-if(!isset($_POST['nome'])){
+if(!isset($_POST["cliente_id"])){
     echo('4');
     header("Location: funcionario_novo.php");
     exit();
 }
-echo('3');
-if($_POST["nome" == ''] || $_POST["nome" == null]){
+if(!isset($_POST["livro_id"])){
+    echo('4');
+    header("Location: funcionario_novo.php");
+    exit();
+}
+if($_POST["cliente_id"] == '' || $_POST["cliente_id"] == null){
     echo('2');
     header("Location: emprestimo_novo.php");
     exit();
 }
-echo('1');
+if($_POST["livro_id"] == '' || $_POST["livro_id"] == null){
+    echo('2');
+    header("Location: emprestimo_novo.php");
+    exit();
+}
 
-$funcio = Factory::funcionario();
+if(
+    EmprestimoRepos::countByClienteWithNoFinished($_POST['cliente_id']) > 0
+    ||
+    EmprestimoRepos::countByLivroWithNoFinished($_POST['livro_id']) > 0
 
-$funcio->setNome($_POST['nome']);
-$funcio->setCpf($_POST['cpf']);
-$funcio->setTelefone($_POST['telefone']);
-$funcio->setEmail($_POST['email']);
-$funcio->setSenha($_POST['senha']);
-$funcio->setinclusaoFuncionarioId($user->getID());
-$funcio->setDataInclusao(date('Y-d-m H:i:s'));
+){
+    header("location: emprestimo_novo.php");
+}
+$emprestimo = Factory::funcionario();
 
-$funcio_retorno = FuncionarioRepos::insert($funcio);
+$emprestimo->setLivroId($_POST['livro_id']);
+$emprestimo->setClienteId($_POST['cliente_id']);
+$emprestimo->setDataInclusao(date('Y-m-d H:i:s'));
+$emprestimo->setinclusaoFuncionarioId($user->getID());
+$emprestimo_retorno = EmprestimoRepos::insert($emprestimo);
 
-if($funcio_retorno > 0){
-    header("Location: emprestimo_editar.php?id=".$funcio_retorno);
+if($emprestimo_retorno > 0){
+    header("Location: emprestimo_editar.php?id=".$emprestimo_retorno);
     exit();
 }
 
