@@ -15,7 +15,11 @@ if (!Auth::isAuthenticated()) {
   <title>Clientes Listagem</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<<<<<<< Updated upstream
   <link rel="stylesheet" href="listagensIndx.css">
+=======
+  <link rel="stylesheet" href="style/listagensIndx.css">
+>>>>>>> Stashed changes
   <link rel="stylesheet" href="index.css">
 </head>
 
