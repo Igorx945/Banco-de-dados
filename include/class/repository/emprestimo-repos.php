@@ -183,7 +183,7 @@ class EmprestimoRepos implements Repository{
         return $row["count(*)"];
     }
 
-    public static function countByClienteWithNotFinished($cliente_id){
+    public static function countByClienteWithNoFinished($cliente_id){
         $db = DB::getInstance();
 
         $sql = 'SELECT count(*) FROM emprestimo WHERE cliente_id = :cliente_id AND data_devolucao IS NULL'; 
@@ -196,7 +196,7 @@ class EmprestimoRepos implements Repository{
         return $row["count(*)"];
     }
 
-    public static function countByLivroWithNotFinished($livro_id){
+    public static function countByLivroWithNoFinished($livro_id){
         $db = DB::getInstance();
 
         $sql = 'SELECT count(*) FROM emprestimo WHERE livro_id = :livro_id AND data_devolucao IS NULL'; 

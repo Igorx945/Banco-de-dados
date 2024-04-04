@@ -20,12 +20,12 @@ if (!Auth::isAuthenticated()) {
 </head>
 
 <body>
-  <?php include("include/menu.php") ?>
+<?php include("include/menu.php") ?>
   <main>
     <div class="container">
       <div id="listagem">
         <h2>FUNCIONARIO > LISTAGEM</h2>
-        <button class="novo">Novo Funcionario</button>
+        <a href= "funcionario_novo.php" class="novo">Novo Funcionario</a>
       </div>
       <div class="table-responsive">
         <table class="table">

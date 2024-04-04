@@ -24,8 +24,8 @@ if (!Auth::isAuthenticated()) {
   <main>
     <div class="container">
       <div id="listagem">
-        <h2>FUNCIONARIO > LISTAGEM</h2>
-        <button class="novo">Novo Funcionario</button>
+        <h2>Emprestimo > LISTAGEM</h2>
+        <button class="novo">Novo Emprestimo</button>
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -51,21 +51,12 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $funcionario->getEmail(); ?></td>
 
                 <td>
-                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" id="editar">Editar</a>
-                  <?php if(LivroRepos::countByAutor($funcionario->getId()) == 0){ ?>
-                  <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>"  id="deletar">Deletar</a>
-                <?php } ?>
+                  <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" id="editar">Editar</a>
+                  <?php if (LivroRepos::countByAutor($funcionario->getId()) == 0) { ?>
+                    <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>" id="deletar">Deletar</a>
+                  <?php } ?>
                 </td>
                 <td>
-                  <?php  
-                  if(
-                    $emprestimo->getDataRenovacao() == null &&
-                    $emprestimo->getDataDevolucao() == null &&
-                    $emprestimo->getDataAlteracao() == null 
-                  ){
-                    ?>
-                    <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId();?>"></a>
-                  <?php } ?>
                 </td>
               </tr>
             <?php

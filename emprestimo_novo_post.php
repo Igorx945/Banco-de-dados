@@ -38,8 +38,8 @@ if(
 }
 $emprestimo = Factory::funcionario();
 
-$emprestimo->setLivroId($_POST['livro_id']);
 $emprestimo->setClienteId($_POST['cliente_id']);
+$emprestimo->setLivroId($_POST['livro_id']);
 $emprestimo->setDataInclusao(date('Y-m-d H:i:s'));
 $emprestimo->setinclusaoFuncionarioId($user->getID());
 $emprestimo_retorno = EmprestimoRepos::insert($emprestimo);
