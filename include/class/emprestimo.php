@@ -1,5 +1,4 @@
 <?php
-
 class Emprestimo{
     private $id;
     private $livro_id;
@@ -10,10 +9,9 @@ class Emprestimo{
     private $data_renovacao;
     private $data_devolucao;
     private $inclusao_funcionario_id;
-    private $alteracao_funcionario_id;
-    private $renovacao_funcionario_id;
-    private $devolucao_funcionario_id;
-
+   private $alteracao_funcionario_id;
+   private $renovacao_funcionario_id;
+   private $devolucao_funcionario_id;
     public function getId(){
         return $this->id;
     }
@@ -38,10 +36,8 @@ class Emprestimo{
         $this->cliente_id = $cliente_id;
     }
 
-    public function getDataVencimento($format = "Y-m-d"){
-        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_vencimento );
-        
-        return $datetime->format($format); 
+    public function getDataVencimento(){
+        return $this->data_vencimento;
     }
 
     public function setDataVencimento($data_vencimento){
@@ -64,12 +60,8 @@ class Emprestimo{
         $this->data_alteracao = $data_alteracao;
     }
 
-    public function getDataRenovacao($format = "Y-m-d"){
-        $datetime = DateTime::createFromFormat("Y-m-d",$this->data_renovacao );
-        if($datetime){
-        return $datetime->format( $format );
-        }
-        return null;
+    public function getDataRenovacao(){
+        return $this->data_renovacao;
     }
 
     public function setDataRenovacao($data_renovacao){
@@ -115,9 +107,17 @@ class Emprestimo{
     public function setDevolucaoFuncionarioId($devolucao_funcionario_id){
         $this->devolucao_funcionario_id = $devolucao_funcionario_id;
     }
-    
 
+    public function dtDataVencimento($format = 'd-m-Y'){
+        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_vencimento);
+        return $datetime->format($format);
+    }
+    public function dtDataDevolucao($format = 'Y-m-d'){
+        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_devolucao);
+        if($datetime){
+            return  $datetime->format($format);
+        }
+        return null;
+    }
 }
-
-
 ?>

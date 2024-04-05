@@ -25,7 +25,7 @@ if (!Auth::isAuthenticated()) {
         <section class="container">
             <h1>Bem vindo a Bliobliteca!</h1>
             <div id="jobs">
-                <div class="block b1" onclick="link('autores.php')">
+                <div class="block b1" onclick="link('autor_lista.php')">
                     <p>Autor</p>
                 </div>
 

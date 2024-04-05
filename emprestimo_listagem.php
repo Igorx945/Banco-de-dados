@@ -1,73 +1,99 @@
 <?php
-include_once('include/factory.php');
-
+include_once("include/factory.php");
 if (!Auth::isAuthenticated()) {
-  header("Location: login.php");
-  exit();
+    header('Location: login.php');
+    exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Funcionario Listagem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="listagensIndx.css">
-  <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPRESTIMO LISTAGEM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        #titAndButton {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 
 <body>
-  <?php include("include/menu.php") ?>
-  <main>
-    <div class="container">
-      <div id="listagem">
-        <h2>Emprestimo > LISTAGEM</h2>
-        <button class="novo">Novo Emprestimo</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>Telefone</th>
-              <th>Email</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            foreach (FuncionarioRepos::listAll() as $funcionario) {
-            ?>
-              <tr>
-                <td><?php echo $funcionario->getId(); ?></td>
-                <td><?php echo $funcionario->getNome(); ?></td>
-                <td><?php echo $funcionario->getCpf(); ?></td>
-                <td><?php echo $funcionario->getTelefone(); ?></td>
-                <td><?php echo $funcionario->getEmail(); ?></td>
+    <?php include("include/menu.php"); ?>
 
-                <td>
-                  <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" id="editar">Editar</a>
-                  <?php if (LivroRepos::countByAutor($funcionario->getId()) == 0) { ?>
-                    <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>" id="deletar">Deletar</a>
+    <div class="container">
+        <div id="titAndButton">
+            <h2>EMPRESTIMO < LISTAGEM</h2>
+                    <a href="emprestimo_novo.php" class="btn btn-success">NOVO EMPRESTIMO</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Livro</th>
+                        <th>Cliente</th>
+                        <th>Vencimento</th>
+                        <th>Devolução</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach (EmprestimoRepos::listAll() as $emprestimo) {
+                    ?>
+                        <tr>
+                            <td><?php echo $emprestimo->getId(); ?></td>
+                            <td><?php
+                                $livro = LivroRepos::get($emprestimo->getLivroId());
+                                echo $emprestimo->getLivroId() . " - " . $livro->getTitulo();
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $cliente = ClienteRepos::get($emprestimo->getClienteId());
+                                echo $emprestimo->getClienteId() . " - " . $cliente->getNome();
+                                ?>
+                            </td>
+                            <td><?php echo $emprestimo->dtDataVencimento("d/m/Y"); ?></td>
+                            <td><?php echo $emprestimo->dtDataDevolucao("d/m/Y"); ?></td>
+                            <td>
+                                <?php 
+                                if(
+                                    $emprestimo->getDataRenovacao("Y-m-d")>= date ("Y-m-d") == null &&
+                                    $emprestimo->getDataDevolucao() == null &&
+                                    $emprestimo->getDataAlteracao() == null
+                                ){
+                                ?>
+                                <?php if(EmprestimoRepos::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == null){ ?>
+                  <a class="btn btn-warning" href="emprestimo_renovar.php?id=<?php echo $emprestimo->getId(); ?>" id="deletar">Renovar</a>
                   <?php } ?>
-                </td>
-                <td>
-                </td>
-              </tr>
-            <?php
-            }
-            ?>
-          </tbody>
-        </table>
-      </div>
+                  
+                  <?php if(EmprestimoRepos::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepos::countByDataRenovacao($emprestimo->getId())==null){?>
+                            <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId();?>" type="button" class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo ($emprestimo->getDataVencimento()== null );?>" class="data_vencimento">DELETAR</a>
+                            <?php } ?>
+                            </td>
+                        </tr>
+                    <?php
+                                }}
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src = "https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src = "js/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function(){
+  $('.data_vencimento').mask('00/00/0000');
+        })
+    </script>
 </body>
 
 </html>

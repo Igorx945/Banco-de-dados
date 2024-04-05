@@ -24,7 +24,7 @@ if (Auth::isAuthenticated()) {
     <?php include("include/menu.php") ?>
     <div class="container">
             <h2>Autor > Novo</h2>
-            <a href="autores.php" type="button" class="btn btn-primary">Voltar</a>
+            <a href="autor_lista.php" type="button" class="btn btn-primary">Voltar</a>
 
             <div class="row mt-4">
                 <div class="col-md-12">

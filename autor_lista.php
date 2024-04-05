@@ -25,7 +25,7 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
       <div id="listagem">
         <h2>AUTORES > LISTAGEM</h2> 
-        <button class="novo" onclick="link('autor_novo.php')">Novo Autor</button>
+        <button class="novo" onclick="link('autor_novo.php')">Novo Cliente</button>
       </div>
       <div class="table-responsive">
         <table class="table">

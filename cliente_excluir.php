@@ -23,7 +23,7 @@ if (!$cliente){
     header("Location: cliente.php");
     exit();
 }
-if(EmprestimoRepos::countByClientes($cliente->getId()) > 0){
+if(EmprestimoRepos::countByCliente($cliente->getId()) > 0){
     header("location: cliente.php");
     exit();
 }
