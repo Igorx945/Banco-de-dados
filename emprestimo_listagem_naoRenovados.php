@@ -14,6 +14,8 @@ if (!Auth::isAuthenticated()) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EMPRESTIMO NAO RENOVADOS</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="listagensIndx.css">
+    <link rel="stylesheet" href="index.css">
   
  
 </head>
@@ -22,7 +24,7 @@ if (!Auth::isAuthenticated()) {
   <?php include("include/menu.php") ?>
   <main>
     <div class="container">
-        <h2>Emprestimo > Listagem</h2>
+        <h2>Emprestimo > Não Renovados</h2>
         <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
       <div class="table-responsive">
         <table class="table">

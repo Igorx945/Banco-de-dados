@@ -23,7 +23,7 @@ if (!$livro){
     header("Location: livro.php");
     exit();
 }
-if(EmprestimoRepos::countByLivro($livro->getId()) > 0)
+if(EmprestimoRepos::countByLivros($livro->getId()) > 0)
     header("location: livro.php");
     exit();
 

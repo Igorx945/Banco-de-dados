@@ -57,7 +57,7 @@ if (!Auth::isAuthenticated()) {
                         </div> 
                         <div class="md-3">
                             <button type="submit" class="enviar">Enviar</button>
-                            <button type="button" class="btn btn-info">voltar</button>
+                            <a href="livros.php" type="submit" class="btn btn-info">voltar</a>
                         </div>
                     </form>
                 </div>

@@ -8,11 +8,11 @@ if (!Auth::isAuthenticated()) {
 
 $user = Auth::getUser();
 
-if(!isset($_POST['nome'])){
+if(!isset($_POST['titulo'])){
     header("Location: livro_novo.php");
     exit();
 }
-if($_POST["nome" == ''] || $_POST["nome" == null]){
+if($_POST["titulo"] == '' || $_POST["titulo"] == null){
     header("Location: livro_novo.php");
     exit();
 }

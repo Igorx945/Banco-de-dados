@@ -14,6 +14,8 @@ if (!Auth::isAuthenticated()) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EPRESTIMO LISTAGEM DEVOLVIDOS</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="listagensIndx.css">
+    <link rel="stylesheet" href="index.css">
  
 </head>
 
@@ -24,6 +26,14 @@ if (!Auth::isAuthenticated()) {
         <h2>Emprestimo > Listagem</h2>
         <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
       <div class="table-responsive">
+      <div class="button-container">
+        <a href="emprestimo_listagem.php" type="button" class="btn btn-primary">Todos</a>
+        <a href="emprestimo_listagem_ativos.php" type="button" class="btn btn-primary">Ativos</a>
+        <a href="emprestimo_devolvidos.php" type="button" class="btn btn-primary">Devolvidos</a>
+        <a href="emprestimo_listagem_vencidos.php" type="button" class="btn btn-primary">Vencidos</a>
+        <a href="emprestimo_renovado.php" type="button" class="btn btn-primary">Renovados</a>
+        <a href="emprestimo_listagem_naoRenovados.php" type="button" class="btn btn-primary">Não Renovados</a>
+    </div>
         <table class="table">
           <thead>
             <tr>

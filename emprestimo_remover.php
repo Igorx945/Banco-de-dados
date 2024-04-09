@@ -42,7 +42,7 @@ $emprestimo = EmprestimoRepos::get($_GET["id"]);
         <a href="emprestimo_listagem_naoRenovados.php" type="button" class="btn btn-primary">Não Renovados</a>
     </div>
                 <div class="col-md-12">
-                    <form action="emprestimo_renovar_post.php" method="POST">
+                    <form action="emprestimo_efetuar_renovacao.php" method="POST">
                         <div class="md-3">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" name="nome" id="nome" class="form-control"value="<?php echo $cliente->getNome();?>" disabled>
@@ -54,6 +54,10 @@ $emprestimo = EmprestimoRepos::get($_GET["id"]);
                         <div class="md-3">
                             <label for="vencimento" class="form-label">Data Vencimento</label>
                             <input type="text" name="data_vencimento" id="vencimento" class="form-control" value="<?php echo $emprestimo->getDataVencimento("d/m/Y");?>" disabled>
+                        </div>
+                        <div class="md-3">
+                            <label for="data_devolucao" class="form-label">Data de devolucao</label>
+                            <input type="text" name="data_devolucao" id="devolucao" class="form-control" value="<?php echo $emprestimo->getDataDevolucao("d/m/Y");?>" disabled>
                         </div>
                     </form>
                 </div>
