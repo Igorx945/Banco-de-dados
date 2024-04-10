@@ -7,18 +7,18 @@ if (!Auth::isAuthenticated()) {
 }
 
 if(!isset($_GET['id'])){
-    header("Location: livro_lista.php");
+    header("Location: livros.php");
     exit();
 }
 if($_GET['id'] == '' || $_GET['id'] == null){
-    header("Location: livro_lista.php");
+    header("Location: livros.php");
     exit();
 }
 
 $livro = LivroRepos::get($_GET['id']);
 
 if (!$livro){
-    header("Location: livro_lista.php");
+    header("Location: livros.php");
     exit();
 }
 ?>
@@ -32,6 +32,8 @@ if (!$livro){
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+
 </head>
 <body>
 <?php include("include/menu.php") ?>
@@ -40,7 +42,7 @@ if (!$livro){
             <h2>LIVRO > Editar</h2>
             <div class="row mt-4">
                 <div class="col-md-12">
-                    <form action="livroEditarPost.php" method="POST">
+                    <form action="livro_editar_post.php" method="POST">
                         <div class="md-3">
                             <label for="titulo" class="form-label">Titulo</label>
                             <input type="text" name="titulo" id="titulo" class="form-control" value="<?php echo $livro->getTitulo();?>">
@@ -75,6 +77,8 @@ if (!$livro){
                         <div class="md-3">
                             <input type="hidden" name="id" value="<?php echo $livro->getId();?>">
                             <button type="submit" class="enviar">Salvar</button>
+    <a class="novo" href="livros.php">Voltar</a>
+
                         </div>
                     </form>
                 </div>

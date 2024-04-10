@@ -17,14 +17,17 @@ if (!Auth::isAuthenticated()) {
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+
 </head>
 
 <body>
     <?php include("include/menu.php") ?>
     <main>
         <div class="container">
-            <h2>CLIENTE > Novo</h2>
-            <div class="row mt-4">
+          <h2>CLIENTE > Novo</h2>
+          
+          <div class="row mt-4">
                 <div class="col-md-12">
                     <form action="cliente_novo_post.php" method="POST">
                         <div class="md-3">
@@ -53,6 +56,9 @@ if (!Auth::isAuthenticated()) {
                         </div>
                         <div class="md-3">
                             <button type="submit" class="enviar">Salvar</button>
+    <a class="novo" href="clientes.php">Voltar</a>
+
+                            
                         </div>
                     </form>
                 </div>

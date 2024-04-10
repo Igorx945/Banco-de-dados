@@ -1,3 +1,4 @@
+
 main{
     display: flex;
     align-items: center;
@@ -5,7 +6,7 @@ main{
 }
 .container{
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 5px;
     margin: 50px 0px;
     padding: 20px;
 }

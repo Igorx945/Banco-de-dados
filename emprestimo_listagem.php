@@ -21,15 +21,6 @@ if (!Auth::isAuthenticated()) {
             align-items: center;
             justify-content: space-between;
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-
-        }
-        .button-container button {
-            margin: 0 10px;
-        }
     </style>
 </head>
 
@@ -37,6 +28,8 @@ if (!Auth::isAuthenticated()) {
     <?php include("include/menu.php"); ?>
 
     <div class="container">
+    <a class="novo" href="index.php">Voltar</a>
+
         <div id="titAndButton">
             <h2>EMPRESTIMO < LISTAGEM</h2>
                     <a href="emprestimo_novo.php" class="btn btn-success">NOVO EMPRESTIMO</a>
@@ -44,14 +37,6 @@ if (!Auth::isAuthenticated()) {
         <div class="table-responsive">
             <table class="table">
                 <thead>
-                <div class="button-container">
-        <a href="emprestimo_listagem.php" type="button" class="btn btn-primary">Todos</a>
-        <a href="emprestimo_listagem_ativos.php" type="button" class="btn btn-primary">Ativos</a>
-        <a href="emprestimo_devolvidos.php" type="button" class="btn btn-primary">Devolvidos</a>
-        <a href="emprestimo_listagem_vencidos.php" type="button" class="btn btn-primary">Vencidos</a>
-        <a href="emprestimo_renovado.php" type="button" class="btn btn-primary">Renovados</a>
-        <a href="emprestimo_listagem_naoRenovados.php" type="button" class="btn btn-primary">Não Renovados</a>
-    </div>
                     <tr>
                         <th>ID</th>
                         <th>Livro</th>
@@ -79,28 +64,30 @@ if (!Auth::isAuthenticated()) {
                                 ?>
                             </td>
                             <td><?php echo $emprestimo->dtDataVencimento("d/m/Y"); ?></td>
+
                             <td><?php echo $emprestimo->dtDataDevolucao("d/m/Y"); ?></td>
+                            
                             <td>
-                                <?php
-                                if (
-                                    $emprestimo->getDataRenovacao("Y-m-d") >= date("Y-m-d") == null &&
-                                    $emprestimo->getDataDevolucao() == null &&
-                                    $emprestimo->getDataAlteracao() == null
-                                ) { ?>
-                                    <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-danger">Excluir</a>
-                                <?php } ?>
-                                <?php if (EmprestimoRepos::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == null) { ?>
-                                    <a class="btn btn-warning" href="emprestimo_renovar.php?id=<?php echo $emprestimo->getId(); ?>" id="deletar">Renovar</a>
+                                <?php if (EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0) { ?>
+                                    <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId() ?>"  class="btn btn-info">Devolver</a>
                                 <?php } ?>
 
-                                <?php if (EmprestimoRepos::countByDataAlteracao($emprestimo->getId()) == null && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == null && EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == null) { ?>
-                                    <a href="emprestimo_excluir.php?id=<?php echo $emprestimo->getId(); ?>" type="button" class="btn btn-danger" href="emprestimo_excluir.php?id=<?php echo ($emprestimo->getDataVencimento() == null); ?>" class="data_vencimento">DELETAR</a>
+                                <?php if (EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == 0 && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0 && $emprestimo->getDataVencimento() >= date('Y-m-d')) { ?>
+                                    <a href="emprestimo_renovar.php?id=<?php echo $emprestimo->getId(); ?>" class="btn btn-info">Renovar</a>
                                 <?php } ?>
+
+                                <?php if (EmprestimoRepos::countByDataAlteracao($emprestimo->getId()) == 0 && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0 && EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == 0) { ?>
+                                    <a onclick="popUpExc(<?php echo $emprestimo->getId() ?>)" type="button" class="btn btn-danger">Excluir</a>
+                            <?php }
+                            } ?>
                             </td>
+
+
                         </tr>
-                    <?php
-                    }
-                    ?>
+                        <?php
+
+
+                        ?>
                 </tbody>
             </table>
         </div>

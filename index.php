@@ -40,6 +40,9 @@ if (!Auth::isAuthenticated()) {
                 <div class="block b4" onclick="link('funcionarios.php')">
                     <p>Funcionarios</p>
                 </div>
+                <div class="block b5" onclick="link('emprestimo_listagem.php')">
+                    <p>Emprestimo</p>
+                </div>
 
             </div>
         </section>

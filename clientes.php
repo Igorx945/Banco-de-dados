@@ -14,17 +14,19 @@ if (!Auth::isAuthenticated()) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clientes Listagem</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="listagensIndx.css">
   <link rel="stylesheet" href="index.css">
+  
 </head>
 
 <body>
   <?php include("include/menu.php") ?>
   <main>
     <div class="container">
+      <button class="novo" onclick="link('index.php')">Voltar</button>
       <div id="listagem">
         <h2>CLIENTES > LISTAGEM</h2>
+
         <button class="novo" onclick="link('cliente_novo.php')">Novo Cliente</button>
       </div>
       <div class="table-responsive">
@@ -42,9 +44,9 @@ if (!Auth::isAuthenticated()) {
             </tr>
           </thead>
           <tbody>
-              <?php
-              foreach(ClienteRepos::listAll() as $cliente){
-              ?>
+            <?php
+            foreach (ClienteRepos::listAll() as $cliente) {
+            ?>
               <tr>
                 <td><?php echo $cliente->getId(); ?></td>
                 <td><?php echo $cliente->getNome(); ?></td>
@@ -54,15 +56,15 @@ if (!Auth::isAuthenticated()) {
                 <td><?php echo $cliente->getRg(); ?></td>
                 <td><?php echo $cliente->getDataNascimento(); ?></td>
                 <td>
-                  <a href="clienteEditar.php?id=<?php echo $cliente->getId(); ?>" id="editar">Editar</a>
-                  <?php if(LivroRepos::countByAutor($cliente->getId()) == 0) { ?>
-                  <a href="#" id="deletar">Deletar</a>
-                  <?php } ?>
+                <a href="cliente_editar.php?id=<?php echo $cliente->getId();?>" type="button" class="btn btn-primary">EDITAR</a>
+                    <?php if(EmprestimoRepos::countByClientes($cliente->getId())== 0){?>
+                    <a href="cliente_excluir.php?id=<?php echo $cliente->getId();?>" type="button" class="btn btn-danger">DELETAR</a>
+                    <?php } ?>
                 </td>
               </tr>
-              <?php
-              }
-              ?>
+            <?php
+            }
+            ?>
           </tbody>
         </table>
       </div>

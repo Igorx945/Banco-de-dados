@@ -4,7 +4,7 @@
 #jobs{
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -16,10 +16,11 @@
     height: 10vh;
     cursor: pointer;
 }
-.b1{border-right: 10px solid rgb(58, 225, 58);}
+.b1{border-right: 10px solid rgb(198, 231, 16);}
 .b2{border-right: 10px solid rgb(3, 243, 243);}
 .b3{border-right: 10px solid rgb(100, 0, 128);}
 .b4{border-right: 10px solid rgb(201, 13, 44);}
+.b5{border-right: 10px solid rgb(51, 201, 13);}
 .cp{
     background-color: chocolate;
     height: 10vh;

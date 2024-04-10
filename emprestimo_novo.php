@@ -37,11 +37,10 @@ if (!empty($emprestimos)) {
 
 <body>
     <?php include("include/menu.php"); ?>
+    <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
     <div class="container">
 
         <h1>NOVO EMPRESTIMO</h1>
-        <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
-
         <div class="row mt-4">
             <div class="col-md-12">
                 <form action="emprestimo_novo_post.php" method="POST">

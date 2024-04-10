@@ -17,6 +17,8 @@ if (!Auth::isAuthenticated()) {
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+
 </head>
 
 <body>
@@ -49,6 +51,8 @@ if (!Auth::isAuthenticated()) {
                         </div>
                         <div class="md-3">
                             <button type="submit" class="enviar">Enviar</button>
+                            <a class="novo" href="funcionarios.php">Voltar</a>
+
                         </div>
                     </form>
                 </div>

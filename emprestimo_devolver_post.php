@@ -21,29 +21,16 @@ if(!$emprestimo){
     exit();
 }
 
-if (!(
-    $emprestimo->getDataRenovacao() == null &&
-    $emprestimo->getDataRenovacao() == null &&
-    $emprestimo->getDataAlteracao() == null
-    )){
-        header("location: emprestimo_listagem.php?4");
-        exit();
-    }
-if ($emprestimo->getDataVencimento() < date("Y-m-d")){
-    header("location: emprestimo_listagem.php");
-    exit();
-}
 $novo_emprestimo = Factory::emprestimo();
-// $datetime = DateTime::createFromFormat('d/m/Y', $_POST["data_vencimento"]);
-// $dateFormatted = $datetime->format('Y-m-d');
 
 
 
-$emprestimo->setDataRenovacao(date('Y-m-d'));
+
+
 $emprestimo->setDataAlteracao(date('Y-m-d'));
 $emprestimo->setAlteracaoFuncionarioId($user->getId());
-$emprestimo->setRenovacaoFuncionarioId($user->getId());
-$emprestimo->setDataVencimento($novo_emprestimo->getDataVencimento());
+$emprestimo->setDevolucaoFuncionarioId($user->getId());
+$emprestimo->setDataDevolucao(date('Y-m-d'));
 
 
 EmprestimoRepos::update($emprestimo);

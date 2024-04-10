@@ -23,9 +23,10 @@ if (!Auth::isAuthenticated()) {
   <?php include("include/menu.php") ?>
   <main>
     <div class="container">
+    <a class="novo" href="index.php">Voltar</a>
       <div id="listagem">
         <h2>LIVROS > LISTAGEM</h2>
-        <a href="livro_novo.php">Novo Livro</a>
+        <a class="novo" href="livro_novo.php">Novo Livro</a>
       </div>
       <div class="table-responsive">
         <table class="table">

@@ -23,6 +23,8 @@ if (!Auth::isAuthenticated()) {
 <?php include("include/menu.php") ?>
   <main>
     <div class="container">
+    <a class="novo" href="index.php">Voltar</a>
+
       <div id="listagem">
         <h2>FUNCIONARIO > LISTAGEM</h2>
         <a href= "funcionario_novo.php" class="novo">Novo Funcionario</a>

@@ -6,29 +6,22 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
-$user =  Auth::getUser();
+$user = Auth::getUser();
 
 if(!isset($_GET['id'])){
-    header("Location: livro.php");
+    header("location: livros.php?1");
     exit();
 }
-if($_GET['id'] == '' || $_GET['id'] == null){
-    header("Location: livro.php");
+if($_GET["id"] == "" || $_GET["id"] == NULL){
+    header("location: livros.php?2");
+    exit();
+}
+$livro = LivroRepos::get($_GET["id"]);
+if(!$livro){
+    header("location: livros.php?3");
     exit();
 }
 
-$livro = LivroRepos::get($_GET['id']);
-
-if (!$livro){
-    header("Location: livro.php");
-    exit();
-}
-if(EmprestimoRepos::countByLivros($livro->getId()) > 0)
-    header("location: livro.php");
-    exit();
 
 LivroRepos::delete($livro->getId());
-
-header("location: livro.php");
-
-?>
+header("location:livros.php");

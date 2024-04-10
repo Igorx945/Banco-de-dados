@@ -31,6 +31,7 @@ if (!$cliente) {
     <title>Editar Cliente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="listagensIndx.css">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="novo.css">
 </head>
@@ -70,6 +71,8 @@ if (!$cliente) {
                         <div class="md-3">
                             <input type="hidden" name="id" value="<?php echo $cliente->getId(); ?>">
                             <button type="submit" class="enviar">Salvar</button>
+                            <a class="novo" href="clientes.php">Voltar</a>
+
                         </div>
                     </form>
                 </div>
