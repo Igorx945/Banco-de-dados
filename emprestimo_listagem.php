@@ -63,9 +63,9 @@ if (!Auth::isAuthenticated()) {
                                 echo $emprestimo->getClienteId() . " - " . $cliente->getNome();
                                 ?>
                             </td>
-                            <td><?php echo $emprestimo->dtDataVencimento("d/m/Y"); ?></td>
+                            <td><?php echo $emprestimo->getDataVencimento("d/m/Y"); ?></td>
 
-                            <td><?php echo $emprestimo->dtDataDevolucao("d/m/Y"); ?></td>
+                            <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
                             
                             <td>
                                 <?php if (EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0) { ?>

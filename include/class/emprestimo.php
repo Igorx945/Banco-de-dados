@@ -1,4 +1,5 @@
 <?php
+
 class Emprestimo{
     private $id;
     private $livro_id;
@@ -9,9 +10,10 @@ class Emprestimo{
     private $data_renovacao;
     private $data_devolucao;
     private $inclusao_funcionario_id;
-   private $alteracao_funcionario_id;
-   private $renovacao_funcionario_id;
-   private $devolucao_funcionario_id;
+    private $alteracao_funcionario_id;
+    private $renovacao_funcionario_id;
+    private $devolucao_funcionario_id;
+
     public function getId(){
         return $this->id;
     }
@@ -33,15 +35,19 @@ class Emprestimo{
     }
 
     public function setClienteId($cliente_id){
-        $this->cliente_id = $cliente_id;
+        $this->cliente_id = $cliente_id; 
     }
 
     public function getDataVencimento(){
         return $this->data_vencimento;
     }
 
-    public function setDataVencimento($data_vencimento){
+    public function setDataVencimento($data_vencimento){ 
         $this->data_vencimento = $data_vencimento;
+    }
+    public function showDataVencimento($format = 'Y-m-d'){
+        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_vencimento);
+        return $datetime->format($format);
     }
 
     public function getDataInclusao(){
@@ -65,9 +71,15 @@ class Emprestimo{
     }
 
     public function setDataRenovacao($data_renovacao){
-        $this->data_renovacao = $data_renovacao;
+        $this->data_renovacao = $data_renovacao; 
     }
-
+    public function showDataDevolucao($format = 'Y-m-d'){
+        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_devolucao);
+        if($datetime){
+            return $datetime->format($format);
+        }
+        return null;
+    }
     public function getDataDevolucao(){
         return $this->data_devolucao;
     }
@@ -107,17 +119,9 @@ class Emprestimo{
     public function setDevolucaoFuncionarioId($devolucao_funcionario_id){
         $this->devolucao_funcionario_id = $devolucao_funcionario_id;
     }
+    
 
-    public function dtDataVencimento($format = 'd-m-Y'){
-        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_vencimento);
-        return $datetime->format($format);
-    }
-    public function dtDataDevolucao($format = 'Y-m-d'){
-        $datetime = DateTime::createFromFormat('Y-m-d', $this->data_devolucao);
-        if($datetime){
-            return  $datetime->format($format);
-        }
-        return null;
-    }
 }
+
+
 ?>

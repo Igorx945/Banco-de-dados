@@ -41,7 +41,7 @@ if (!$funcionario) {
     <?php include("include/menu.php") ?>
     <main>
         <div class="container">
-            
+
             <h2>funcionario > Editar</h2>
             <div class="row mt-4">
                 <div class="col-md-12">
@@ -62,13 +62,16 @@ if (!$funcionario) {
                             <label for="email" class="form-label">Email</label>
                             <input type="text" name="email" id="email" class="form-control" value="<?php echo $funcionario->getEmail(); ?>">
                         </div>
-                        
-                        
-                        
+                        <div class="md-3 mb-3">
+                            <button class="novo" id="alterar"><a href="funcionario_senha.php?id=<?php echo $funcionario->getId() ?>">Alterar senha</a></button>
+
+                        </div>
+
+
                         <div class="md-3">
                             <input type="hidden" name="id" value="<?php echo $funcionario->getId(); ?>">
                             <button type="submit" class="enviar">Salvar</button>
-        <a class="novo" href="funcionarios.php">Voltar</a>
+                            <a class="novo" href="funcionarios.php">Voltar</a>
 
                         </div>
                     </form>

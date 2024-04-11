@@ -59,8 +59,10 @@ class AutorRepos implements Repository{
         $sql = "UPDATE autor SET nome = :nome, data_alteracao = :data_alteracao, alteracao_funcionario_id = :alteracao_funcionario_id WHERE id = :id";
         $query = $db->prepare($sql);
         $query->bindValue(":nome",$obj->getNome());
-        $query->bindValue(":alteracao_inclusao",$obj->getDataInclusao());
-        $query->bindValue(":alteracao_funcionario_id",$obj->getInclusaoFuncionarioId());
+        $query->bindValue(":data_alteracao",$obj->getDataAlteracao());
+        $query->bindValue(":alteracao_funcionario_id",$obj->getAlteracaoFuncionarioId());
+        $query->bindValue(":id",$obj->getId());
+        $query->execute();
     }
     public static function delete($id){
         $db = DB::getInstance();
@@ -70,6 +72,7 @@ class AutorRepos implements Repository{
         $query->execute();
         
     }
+
     public static function countByInclusaoFuncionario($inclusao_funcionario_id){
         $db = DB::getInstance();
 

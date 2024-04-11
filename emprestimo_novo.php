@@ -15,8 +15,10 @@ if (!empty($emprestimos)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="nov.css">
+    <link rel="stylesheet" href="novo.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+
     <title>NOVO EMPRESTIMO</title>
 </head>
 <style>
@@ -47,39 +49,37 @@ if (!empty($emprestimos)) {
                     <div class="mb-3">
                         <label for="livro" class="form-label">livro</label>
                         <select name="livro_id" id="livro" class="form-select form-select-lg mb-3" aria-label="Large select example" required>
-                            <?php
-                            foreach (LivroRepos::listAll() as $livro) {
-                                if (EmprestimoRepos::countByLivros($livro->getId()) == 0) {
-                            ?>
-                                    <option selected value="<?php echo $livro->getId(); ?>">
-                                        <?php echo $livro->getTitulo() ?>
-                                    </option>
-                            <?php }
-                            } ?>
+                        <?php
+                                        foreach(LivroRepos::listAll() as $livro){
+                                            if(EmprestimoRepos::countByLivros($livro->getId()) == 0 || EmprestimoRepos::countByLivrosDevol($livro->getId()) > 0){
+                                    ?>
+                                        <option value="<?php echo $livro->getId();?>">
+                                            <?php echo $livro->getTitulo(); ?>
+                                        </option>
+                                    <?php }} ?>
                         </select>
                         <br>
                         <br>
                         <label for="cliente" class="form-label">cliente</label>
                         <select name="cliente_id" id="cliente" class="form-select form-select-lg mb-3" aria-label="Large select example" required>
-                            <?php
-                            foreach (ClienteRepos::listAll() as $cliente) {
-                                if (EmprestimoRepos::countByClientes($cliente->getId()) == 0) {
-                            ?>
-                                    <option selected value="<?php echo $cliente->getId(); ?>">
-                                        <?php echo $cliente->getNome() ?>
-                                    </option>
-                            <?php }
-                            } ?>
+                        <?php
+                                        foreach(ClienteRepos::listAll() as $cliente){
+                                            if(EmprestimoRepos::countByClientes($cliente->getId()) == 0 || EmprestimoRepos::countByClientesDevol($cliente->getId()) > 0){
+                                    ?>
+                                        <option value="<?php echo $cliente->getId();?>">
+                                            <?php echo $cliente->getNome(); ?>
+                                        </option>
+                                    <?php }} ?>
                         </select>
                         <br>
                         <br>
-                        <label for="data_vencimento" class="form-label">vencimento</label>
-                        <input type="text" name="data_vencimento" id="data_vencimento" class="form-control data_vencimento" value="<?php echo $emprestimo->getDataVencimento(); ?> " required>
-
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-info">ENVIAR</button>
-                    </div>
+                        <label for="dataVencimento" class="form-label">Data de Vencimento</label>
+                            <input type='text' name="dataVencimento" id="dataVencimento" class="form-control vencimento" required placeholder='dd/mm/aaaa' autocomplete='off' value="<?php $datetime = DateTime::createFromFormat('Y-m-d', EmprestimoRepos::autoCompleteVencimento());
+                            echo $datetime->format('d/m/Y'); ?>" readonly>
+                        </div>
+                        <div class="md-3">
+                            <button type="submit" class="novo">Salvar</button>
+                        </div>
                 </form>
             </div>
         </div>

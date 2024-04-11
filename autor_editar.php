@@ -32,6 +32,8 @@ if (!$autor){
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="listagensIndx.css">
+
 </head>
 <body>
 <?php include("include/menu.php") ?>
@@ -48,6 +50,8 @@ if (!$autor){
                         <div class="md-3">
                             <input type="hidden" name="id" value="<?php echo $autor->getId();?>">
                             <button type="submit" class="enviar">Salvar</button>
+      <a class="novo" href="autor_lista.php">Voltar</a>
+
                         </div>
                     </form>
                 </div>

@@ -25,7 +25,9 @@ if (!Auth::isAuthenticated()) {
     <div class="container">
       <div id="listagem">
         <h2>AUTORES > LISTAGEM</h2> 
-        <a class="novo" href="autor_novo.php">Novo Autor</a>
+  <a class="novo" href="index.php">Voltar</a>
+  <a class="novo" href="autor_novo.php">Novo Autor</a>
+  
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -46,7 +48,7 @@ if (!Auth::isAuthenticated()) {
                 <td>
                   <a href="autor_editar.php?id=<?php echo $autor->getId(); ?>" id="editar">Editar</a>
                   <?php if(LivroRepos::countByAutor($autor->getId()) == 0){ ?>
-                  <a href="autor_excluir.php?id=<?php echo $autor->getId(); ?>"  id="deletar">Deletar</a>
+                  <a onclick="popUpExc(<?php echo $autor->getId(); ?>)" type="button" class="btn btn-danger">Deletar</a>
                 <?php } ?>
                 </td>
               </tr>

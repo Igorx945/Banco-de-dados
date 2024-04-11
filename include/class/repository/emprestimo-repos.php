@@ -23,7 +23,6 @@ class EmprestimoRepos implements Repository{
             $emprestimo->setRenovacaoFuncionarioId($row->renovacao_funcionario_id);
             $emprestimo->setDevolucaoFuncionarioId($row->devolucao_funcionario_id);
             $list[] = $emprestimo;
-           
         }
         return $list;
     }
@@ -52,7 +51,7 @@ class EmprestimoRepos implements Repository{
         }
         return $list;
     }
-    public static function listaRenovacao(){
+    public static function listRenovac(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo WHERE data_renovacao is not null and data_devolucao is null";
         $query = $db->prepare($sql);
@@ -77,7 +76,7 @@ class EmprestimoRepos implements Repository{
         }
         return $list;
     }
-    public static function listaNaoRenovados(){
+    public static function listNotRenovac(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo WHERE data_renovacao is null and data_devolucao is null";
         $query = $db->prepare($sql);
@@ -129,7 +128,7 @@ class EmprestimoRepos implements Repository{
         }
         return $list;
     }
-    public static function listaDevolvido(){
+    public static function listDevolvido(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo WHERE data_devolucao is not null";
         $query = $db->prepare($sql);
@@ -199,15 +198,17 @@ class EmprestimoRepos implements Repository{
     }
     public static function update($obj){
         $db = DB::getInstance();
-        $sql = "UPDATE emprestimo SET data_vencimento = :data_vencimento, data_alteracao = :data_alteracao, data_renovacao = :data_renovacao, alteracao_funcionario_id = :alteracao_funcionario_id, renovacao_funcionario_id WHERE id = :id";
+        $sql = "UPDATE emprestimo SET data_vencimento = :data_vencimento, data_alteracao = :data_alteracao, data_renovacao = :data_renovacao, data_devolucao = :data_devolucao, alteracao_funcionario_id = :alteracao_funcionario_id, renovacao_funcionario_id = :renovacao_funcionario_id, devolucao_funcionario_id = :devolucao_funcionario_id  WHERE id = :id";
 
         $query = $db->prepare($sql);//prepara a query para ser executada.
         $query->bindValue(':id', $obj->getId());
         $query->bindValue(':data_vencimento' ,$obj->getDataVencimento());
         $query->bindValue(':data_alteracao', $obj->getDataAlteracao());
         $query->bindValue(':data_renovacao', $obj->getDataRenovacao());
+        $query->bindValue(':data_devolucao', $obj->getDataDevolucao());
         $query->bindValue(':alteracao_funcionario_id', $obj->getAlteracaoFuncionarioId());
         $query->bindValue(':renovacao_funcionario_id',  $obj->getRenovacaoFuncionarioId());
+        $query->bindValue(':devolucao_funcionario_id',  $obj->getDevolucaoFuncionarioId());
         $query->execute();
     }
     public static function delete($id){
@@ -235,6 +236,32 @@ class EmprestimoRepos implements Repository{
         $db = DB::getInstance();
 
         $sql = 'SELECT count(*) FROM emprestimo WHERE cliente_id = :cliente_id'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":cliente_id",$cliente_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+
+    public static function countByLivrosDevol($livro_id){ // Conta quantos emprestimos existem com o mesmo livro
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE livro_id = :livro_id and data_devolucao is not null'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":livro_id",$livro_id);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
+    }
+
+    public static function countByClientesDevol($cliente_id){ 
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE cliente_id = :cliente_id and data_devolucao is not null'; 
 
         $query = $db->prepare($sql);
         $query->bindValue(":cliente_id",$cliente_id);
@@ -331,5 +358,9 @@ class EmprestimoRepos implements Repository{
         $row = $query->fetch(PDO::FETCH_ASSOC);
         return $row["count(*)"];
     }
-
+    public static function autoCompleteVencimento() {
+        $dataSeteDiasDepois = new DateTime();
+        $dataSeteDiasDepois->add(new DateInterval('P6D'));
+        return $dataSeteDiasDepois->format('Y-m-d');
+    }
 }

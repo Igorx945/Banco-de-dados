@@ -9,39 +9,51 @@ if (!Auth::isAuthenticated()) {
 $user = Auth::getUser();
 
 if(!isset($_POST['id'])){
-    header("location: funcionario.php?1");
+    header("location: funcionarios.php");
     exit();
 }
 if($_POST["id"] == "" || $_POST["id"] == null){
-    header("location: funcionario.php?2");
+    header("location: funcionarios.php");
     exit();
 }
-$funcionario = FuncionarioRepos::get($_POST["id"]);
-if(!$funcionario){
-    header("location: funcionario.php");
+$funcio = FuncionarioRepos::get($_POST["id"]);
+if(!$funcio){
+    header("location: funcionarios.php");
     exit();
 }
 
 if(!isset($_POST['nome'])){
-    header("Location: funcionario_novo.php?id=".$funcionario->getId());
+    header("Location: funcionario_novo.php?id=".$funcio->getId());
     exit();
 }
 if($_POST["nome"] == "" || $_POST["nome"] == null){
-    header("Location: funcionario_novo.php?id=".$funcionario->getId());
+    header("Location: funcionario_novo.php?id=".$funcio->getId());
+    exit();
+}
+date_default_timezone_set('America/Sao_Paulo');
+
+$email = $_POST["email"];
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: funcionario_novo.php");
     exit();
 }
 
 
+$cpf = $_POST["cpf"];
+if ($cpf == ""){
+    $cpf = null;
+}
 
-$funcionario->setNome($_POST['nome']);
-$funcionario->setCpf($_POST['cpf']);
-$funcionario->setTelefone($_POST['telefone']);
-$funcionario->setSenha($_POST['senha']);
-$funcionario->setEmail($_POST['email']);
-$funcionario->setAlteracaoFuncionarioId($user->getId());
-$funcionario->setDataAlteracao(date('Y-d-m H:i:s'));
 
-FuncionarioRepos::update($funcionario);
+$funcio->setNome($_POST['nome']);
+$funcio->setCpf($cpf);
+$funcio->setTelefone($_POST['telefone']);
+$funcio->setSenha($_POST['senha']);
+$funcio->setEmail($email);
+$funcio->setAlteracaoFuncionarioId($user->getId());
+$funcio->setDataAlteracao(date('Y-d-m H:i:s'));
+
+FuncionarioRepos::update($funcio);
 
 
 
