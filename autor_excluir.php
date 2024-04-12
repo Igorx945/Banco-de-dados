@@ -19,6 +19,7 @@ if($_GET['id'] == '' || $_GET['id'] == null){
 
 $autor = AutorRepos::get($_GET['id']);
 
+
 if (!$autor){
     header("Location: autor_lista.php?3");
     exit();

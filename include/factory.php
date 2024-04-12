@@ -14,7 +14,6 @@ include_once('class/repository/cliente-repos.php');
 include_once('class/repository/emprestimo-repos.php');
 include_once('class/repository/funcionario-repos.php');
 include_once('class/repository/livro-repos.php');
-include_once('class/repository/autor-repos.php');
 include_once('class/auth.php');
 
 class Factory{

@@ -33,8 +33,7 @@ if ($rg == ""){
 }
 date_default_timezone_set('America/Sao_Paulo');
 
-$datetime = DateTime::createFromFormat('d/m/Y', $_POST["dataNascimento"]);
-$dateFormatted = $datetime->format('Y-m-d');
+
 $cliente = Factory::cliente();
 
 $cliente->setNome($_POST['nome']);
@@ -42,7 +41,7 @@ $cliente->setTelefone($_POST["telefone"]);
 $cliente->setEmail($email);
 $cliente->setCpf($cpf);
 $cliente->setRg($rg);
-$cliente->setDataNascimento($dateFormatted);
+$cliente->setDataNascimento($_POST['data_nascimento']);
 $cliente->setinclusaoFuncionarioId($user->getID());
 $cliente->setDataInclusao(date('Y-m-d H:i:s'));
 

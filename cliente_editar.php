@@ -66,7 +66,7 @@ if (!$cliente) {
                         </div>
                         <div class="md-3">
                             <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                            <input type="text" name="dataNascimento" id="dataNascimento" class="form-control" value="<?php echo $cliente->getDataNascimento(); ?>">
+                            <input type="date" name="dataNascimento" id="dataNascimento" class="form-control" value="<?php echo $cliente->getDataNascimento(); ?>">
                         </div>
                         <div class="md-3">
                             <input type="hidden" name="id" value="<?php echo $cliente->getId(); ?>">

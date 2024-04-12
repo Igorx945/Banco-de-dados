@@ -52,7 +52,7 @@ if (!Auth::isAuthenticated()) {
                         </div>
                         <div class="md-3">
                             <label for="nome" class="form-label">Data de Nascimento</label>
-                            <input type="text" name="dataNascimento" id="nome" class="form-control" placeholder="dd/mm/aaaa" required>
+                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" required>
                         </div>
                         <div class="md-3">
                             <button type="submit" class="enviar">Salvar</button>
