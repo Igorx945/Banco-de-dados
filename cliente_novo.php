@@ -25,9 +25,9 @@ if (!Auth::isAuthenticated()) {
     <?php include("include/menu.php") ?>
     <main>
         <div class="container">
-          <h2>CLIENTE > Novo</h2>
-          
-          <div class="row mt-4">
+            <h2>CLIENTE > Novo</h2>
+
+            <div class="row mt-4">
                 <div class="col-md-12">
                     <form action="cliente_novo_post.php" method="POST">
                         <div class="md-3">
@@ -51,21 +51,28 @@ if (!Auth::isAuthenticated()) {
                             <input type="text" name="rg" id="rg" class="form-control" required>
                         </div>
                         <div class="md-3">
-                            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-                            <input type="date" name="dataNascimento" id="dataNascimento" class="form-control" required>
+                            <label for="nome" class="form-label">Data de Nascimento</label>
+                            <input type="text" name="dataNascimento" id="nome" class="form-control" placeholder="dd/mm/aaaa" required>
                         </div>
                         <div class="md-3">
                             <button type="submit" class="enviar">Salvar</button>
-    <a class="novo" href="clientes.php">Voltar</a>
+                            <a class="novo" href="clientes.php">Voltar</a>
 
-                            
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </main>
+    <script src="htts://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('.nascimento').mask('00/00/0000');
+        });
+    </script>
 </body>
 
 </html>

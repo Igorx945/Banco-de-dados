@@ -1,8 +1,7 @@
 <?php
-include_once('include/factory.php');
-
+include_once("include/factory.php");
 if (!Auth::isAuthenticated()) {
-  header("Location: login.php");
+  header('Location: login.php');
   exit();
 }
 ?>
@@ -12,62 +11,93 @@ if (!Auth::isAuthenticated()) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Funcionario Listagem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="listagensIndx.css">
+  <title>FUNCIONARIO LISTAGEM</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="novo.css">
+    <link rel="stylesheet" href="listagensIndx.css">
 </head>
 
 <body>
-<?php include("include/menu.php") ?>
-  <main>
-    <div class="container">
-    <a class="novo" href="index.php">Voltar</a>
+  <?php include("include/menu.php"); ?>
 
-      <div id="listagem">
-        <h2>FUNCIONARIO > LISTAGEM</h2>
-        <a href= "funcionario_novo.php" class="novo">Novo Funcionario</a>
-      </div>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>Telefone</th>
-              <th>Email</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            foreach (FuncionarioRepos::listAll() as $funcionario) {
-            ?>
-              <tr>
-                <td><?php echo $funcionario->getId(); ?></td>
-                <td><?php echo $funcionario->getNome(); ?></td>
-                <td><?php echo $funcionario->getCpf(); ?></td>
-                <td><?php echo $funcionario->getTelefone(); ?></td>
-                <td><?php echo $funcionario->getEmail(); ?></td>
-
-                <td>
-                <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" id="editar">Editar</a>
-                  <?php if(LivroRepos::countByAutor($funcionario->getId()) == 0){ ?>
-                  <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>"  id="deletar">Deletar</a>
-                <?php } ?>
-                </td>
-              </tr>
-            <?php
-            }
-            ?>
-          </tbody>
-        </table>
-      </div>
+  <div class="container ">
+  <a class="novo" href="index.php">Voltar</a>
+    
+    <div id="titAndButton">
+      <h2>FUNCIONARIO < LISTAGEM</h2>
+          <a href="funcionario_novo.php" class="btn btn-success">NOVO FUNCIONARIO</a>
     </div>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Cpf</th>
+            <th>Telefone</th>
+
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach (FuncionarioRepos::listAll() as $funcionario) {
+            $user = Auth::getUser();
+          ?>
+            <tr>
+              <td><?php echo $funcionario->getID(); ?></td>
+              <td><?php echo $funcionario->getNome(); ?></td>
+              <td><?php echo $funcionario->getTelefone(); ?></td>
+              <td><?php echo $funcionario->getCpf(); ?></td>
+              <td><?php echo $funcionario->getEmail(); ?></td>
+
+              <div class="row mt-2">
+                <div id="titAndButton">
+                  <td>
+                    <div class="mb-3">
+                      <a href="funcionario_editar.php?id=<?php echo $funcionario->getId(); ?>" type="button" class="btn btn-primary">EDITAR</a>
+                    </div>
+                    <?php if (
+                      EmprestimoRepos::countByInclusaoFuncionario($funcionario->getId()) == 0 && EmprestimoRepos::countByAlteracaoFuncionario($funcionario->getId()) == 0 &&
+                      EmprestimoRepos::countByDevolucaoFuncionario($funcionario->getId()) == 0 &&
+                      EmprestimoRepos::countByRenovacaoFuncionario($funcionario->getId()) == 0 &&
+                      ClienteRepos::countByInclusaoFuncionario($funcionario->getId()) ==
+                      0 &&
+                      ClienteRepos::countByAlteracaoFuncionario($funcionario->getId()) == 0 &&
+                      AutorRepos::countByInclusaoFuncionario($funcionario->getId()) ==
+                      0 &&
+                      AutorRepos::countByAlteracaoFuncionario($funcionario->getId()) ==
+                      0 &&
+                      LivroRepos::countByInclusaoFuncionario($funcionario->getId()) ==
+                      0 &&
+                      LivroRepos::countByAlteracaoFuncionario($funcionario->getId()) == 0
+                    ) { ?>
+
+                      <div class="mb-3">
+                        <a href="funcionario_excluir.php?id=<?php echo $funcionario->getId(); ?>" type="button" class="btn btn-danger">DELETAR</a>
+
+                      </div>
+                  </td>
+                </div>
+            </tr>
+          <?php
+                    }
+          ?>
+        <?php
+          }
+        ?>
+
+
+
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 </body>
 
 </html>

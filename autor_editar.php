@@ -6,24 +6,25 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
-if(!isset($_GET['id'])){
-    header("Location: autorList.php");
+if (!isset($_GET['id'])) {
+    header("Location: autor_lista.php");
     exit();
 }
-if($_GET['id'] == '' || $_GET['id'] == null){
-    header("Location: autorList.php");
+if ($_GET['id'] == '' || $_GET['id'] == null) {
+    header("Location: autor_lista.php");
     exit();
 }
 
 $autor = AutorRepos::get($_GET['id']);
 
-if (!$autor){
-    header("Location: autorList.php");
+if (!$autor) {
+    header("Location: autor_lista.php");
     exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +36,9 @@ if (!$autor){
     <link rel="stylesheet" href="listagensIndx.css">
 
 </head>
+
 <body>
-<?php include("include/menu.php") ?>
+    <?php include("include/menu.php") ?>
     <main>
         <div class="container">
             <h2>AUTOR > Editar</h2>
@@ -45,12 +47,12 @@ if (!$autor){
                     <form action="autor_editar_post.php" method="POST">
                         <div class="md-3">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" name="nome" id="nome" class="form-control" value="<?php echo $autor->getNome();?>">
+                            <input type="text" name="nome" id="nome" class="form-control" value="<?php echo $autor->getNome(); ?>">
                         </div>
                         <div class="md-3">
-                            <input type="hidden" name="id" value="<?php echo $autor->getId();?>">
-                            <button type="submit" class="enviar">Salvar</button>
-      <a class="novo" href="autor_lista.php">Voltar</a>
+                            <input type="hidden" name="id" value="<?php echo $autor->getId(); ?>">
+                            <button type="submit" class="novo">Salvar</button>
+                            <a class="novo" href="autor_lista.php">Voltar</a>
 
                         </div>
                     </form>
@@ -58,6 +60,8 @@ if (!$autor){
             </div>
         </div>
     </main>
+    <script src="index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -6,19 +6,21 @@ if (!Auth::isAuthenticated()) {
     exit();
 }
 
+$user  = Auth::getUser();
+
 if(!isset($_GET['id'])){
-    header("Location: autor_lista.php");
+    header("Location: autor_lista.php?1");
     exit();
 }
 if($_GET['id'] == '' || $_GET['id'] == null){
-    header("Location: autor_lista.php");
+    header("Location: autor_lista.php?2");
     exit();
 }
 
 $autor = AutorRepos::get($_GET['id']);
 
 if (!$autor){
-    header("Location: autor_lista.php");
+    header("Location: autor_lista.php?3");
     exit();
 }
 if(LivroRepos::countByAutor($autor->getId()) > 0)

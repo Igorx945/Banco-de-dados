@@ -28,14 +28,21 @@ if (!Auth::isAuthenticated()) {
     <?php include("include/menu.php"); ?>
 
     <div class="container">
-    <a class="novo" href="index.php">Voltar</a>
-
         <div id="titAndButton">
             <h2>EMPRESTIMO < LISTAGEM</h2>
+                    <a class="btn btn-warning" href="index.php">Voltar</a>
                     <a href="emprestimo_novo.php" class="btn btn-success">NOVO EMPRESTIMO</a>
         </div>
         <div class="table-responsive">
             <table class="table">
+                <div class="button-container">
+                    <a href="emprestimo_listagem.php" type="button" class="btn btn-primary">Todos</a>
+                    <a href="emprestimo_listagem_ativos.php" type="button" class="btn btn-primary">Ativos</a>
+                    <a href="emprestimo_listagem_devolvidos.php" type="button" class="btn btn-primary">Devolvidos</a>
+                    <a href="emprestimo_listagem_vencidos.php" type="button" class="btn btn-primary">Vencidos</a>
+                    <a href="emprestimo_listagem_renovado.php" type="button" class="btn btn-primary">Renovados</a>
+                    <a href="emprestimo_listagem_naoRenovados.php" type="button" class="btn btn-primary">Não Renovados</a>
+                </div>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -66,10 +73,10 @@ if (!Auth::isAuthenticated()) {
                             <td><?php echo $emprestimo->getDataVencimento("d/m/Y"); ?></td>
 
                             <td><?php echo $emprestimo->getDataDevolucao("d/m/Y"); ?></td>
-                            
+
                             <td>
                                 <?php if (EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0) { ?>
-                                    <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId() ?>"  class="btn btn-info">Devolver</a>
+                                    <a href="emprestimo_devolver.php?id=<?php echo $emprestimo->getId() ?>" class="btn btn-info">Devolver</a>
                                 <?php } ?>
 
                                 <?php if (EmprestimoRepos::countByDataRenovacao($emprestimo->getId()) == 0 && EmprestimoRepos::countByDataDevolucao($emprestimo->getId()) == 0 && $emprestimo->getDataVencimento() >= date('Y-m-d')) { ?>
@@ -99,6 +106,7 @@ if (!Auth::isAuthenticated()) {
             $('.data_vencimento').mask('00/00/0000');
         })
     </script>
+
 </body>
 
 </html>

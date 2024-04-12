@@ -9,16 +9,16 @@ if (!Auth::isAuthenticated()) {
 $user = Auth::getUser();
 
 if(!isset($_POST['id'])){
-    header("location: autor_lista.php?1");
+    header("location: autor_lista.php");
     exit();
 }
 if($_POST["id"] == "" || $_POST["id"] == null){
-    header("location: autor_lista.php?2");
+    header("location: autor_lista.php");
     exit();
 }
 $autor = AutorRepos::get($_POST["id"]);
 if(!$autor){
-    header("location: autor_lista.php?3");
+    header("location: autor_lista.php");
     exit();
 }
 
@@ -30,8 +30,7 @@ if($_POST["nome"] == "" || $_POST["nome"] == null){
     header("Location: autor_novo.php?id=".$autor->getId());
     exit();
 }
-
-
+date_default_timezone_set('America/Sao_Paulo');
 
 $autor->setNome($_POST['nome']);
 $autor->setAlteracaoFuncionarioId($user->getID());

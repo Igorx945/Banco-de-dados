@@ -24,10 +24,10 @@ if (!Auth::isAuthenticated()) {
   <main>
     <div class="container">
       <div id="listagem">
-        <h2>AUTORES > LISTAGEM</h2> 
-  <a class="novo" href="index.php">Voltar</a>
-  <a class="novo" href="autor_novo.php">Novo Autor</a>
-  
+        <h2>AUTORES > LISTAGEM</h2>
+        <a class="novo" href="index.php">Voltar</a>
+        <a class="novo" href="autor_novo.php">Novo Autor</a>
+
       </div>
       <div class="table-responsive">
         <table class="table">
@@ -39,22 +39,22 @@ if (!Auth::isAuthenticated()) {
             </tr>
           </thead>
           <tbody>
-              <?php
-              foreach(AutorRepos::listAll() as $autor){
-              ?>
+            <?php
+            foreach (AutorRepos::listAll() as $autor) {
+            ?>
               <tr>
                 <td><?php echo $autor->getId(); ?></td>
                 <td><?php echo $autor->getNome(); ?></td>
                 <td>
                   <a href="autor_editar.php?id=<?php echo $autor->getId(); ?>" id="editar">Editar</a>
-                  <?php if(LivroRepos::countByAutor($autor->getId()) == 0){ ?>
-                  <a onclick="popUpExc(<?php echo $autor->getId(); ?>)" type="button" class="btn btn-danger">Deletar</a>
-                <?php } ?>
+                  <?php if (LivroRepos::countByAutor($autor->getId()) == 0) { ?>
+                    <a type="button" class="btn btn-danger" href="autor_excluir.php?id=<?php echo $autor->getId() ?>">Deletar</a>
+                  <?php } ?>
                 </td>
               </tr>
-              <?php
-              }
-              ?>
+            <?php
+            }
+            ?>
           </tbody>
         </table>
       </div>

@@ -50,7 +50,7 @@
     }
     public function getDataNascimento($format = 'Y-m-d'){
         $datetime = DateTime::createFromFormat('Y-m-d', $this->data_nascimento);
-        return $datetime->format( $format );
+        return $datetime->format($format);
     }
     public function setDataNascimento($data_nascimento){
         $this->data_nascimento = $data_nascimento;

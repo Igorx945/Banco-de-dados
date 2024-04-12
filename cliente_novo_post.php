@@ -33,7 +33,7 @@ if ($rg == ""){
 }
 date_default_timezone_set('America/Sao_Paulo');
 
-$datetime = DateTime::createFromFormat('d/m/Y', $_POST["data_nascimento"]);
+$datetime = DateTime::createFromFormat('d/m/Y', $_POST["dataNascimento"]);
 $dateFormatted = $datetime->format('Y-m-d');
 $cliente = Factory::cliente();
 

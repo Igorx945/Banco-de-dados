@@ -24,7 +24,7 @@ if (!Auth::isAuthenticated()) {
   <main>
     <div class="container">
      
-        <h2>Emprestimo > Listagem</h2>
+        <h2>Emprestimo > Renovados</h2>
         <a href="emprestimo_listagem.php" class="btn btn-warning">VOLTAR</a>
       <div class="table-responsive">
 
@@ -32,9 +32,9 @@ if (!Auth::isAuthenticated()) {
         <div class="button-container">
         <a href="emprestimo_listagem.php" type="button" class="btn btn-primary">Todos</a>
         <a href="emprestimo_listagem_ativos.php" type="button" class="btn btn-primary">Ativos</a>
-        <a href="emprestimo_devolver.php" type="button" class="btn btn-primary">Devolvidos</a>
+        <a href="emprestimo_listagem_devolvidos.php" type="button" class="btn btn-primary">Devolvidos</a>
         <a href="emprestimo_listagem_vencidos.php" type="button" class="btn btn-primary">Vencidos</a>
-        <a href="emprestimo_renovado.php" type="button" class="btn btn-primary">Renovados</a>
+        <a href="emprestimo_listagem_renovado.php" type="button" class="btn btn-primary">Renovados</a>
         <a href="emprestimo_listagem_naoRenovados.php" type="button" class="btn btn-primary">Não Renovados</a>
     </div>
         <thead>
@@ -48,25 +48,29 @@ if (!Auth::isAuthenticated()) {
           </thead>
           <tbody>
               <?php
-              foreach(EmprestimoRepos::listaRenovacao() as $emprestimo){
+              foreach(EmprestimoRepos::listRenovac() as $empres){
 
               ?>
               <tr>
-                <td><?php echo $emprestimo->getId(); ?></td>
+                <td><?php echo $empres->getId(); ?></td>
                 <td><?php 
-                        $livro = LivroRepos::get($emprestimo->getLivroId());
-                        echo $emprestimo->getLivroId()." - ". $livro->getTitulo(); 
+                        $livro = LivroRepos::get($empres->getLivroId());
+                        echo $empres->getLivroId()." - ". $livro->getTitulo(); 
                     ?>
                 </td>
                 <td>
                     <?php 
-                        $cliente = ClienteRepos::get($emprestimo->getClienteId());
-                        echo $emprestimo->getClienteId()." - ". $cliente->getNome(); 
+                        $cliente = ClienteRepos::get($empres->getClienteId());
+                        echo $empres->getClienteId()." - ". $cliente->getNome(); 
                     ?>
                 </td>
-                <td><?php echo $emprestimo->dtDataVencimento("d/m/Y"); ?></td>
-                <td><?php echo $emprestimo->dtDataDevolucao("d/m/Y"); ?></td>
-                
+                <td><?php echo $empres->showDataVencimento("d/m/Y"); ?></td>
+                <td><?php echo $empres->showDataDevolucao("d/m/Y"); ?></td>
+                <td>
+                <?php if(EmprestimoRepos::countByDataRenovacao($empres->getId()) == null && EmprestimoRepos::countByDataDevolucao($empres->getId()) == null && $empres->getDataVencimento() >= date('Y-m-d')){ ?>
+                  <a href="emprestimo_renovar.php?id=<?php echo $empres->getId(); ?>" class="renovar">Renovar</a>
+                  <?php } ?>
+                </td>
 
               </tr>
               <?php
@@ -77,7 +81,8 @@ if (!Auth::isAuthenticated()) {
       </div>
     </div>
   </main>
-  
+  <script src="js/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 
 </html>

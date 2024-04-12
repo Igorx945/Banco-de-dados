@@ -12,11 +12,11 @@ if(!isset($_POST['nome'])){
     header("Location: autor_novo.php");
     exit();
 }
-if($_POST["nome" == ''] || $_POST["nome" == null]){
+if($_POST["nome"] == '' || $_POST["nome"] == null){
     header("Location: autor_novo.php");
     exit();
 }
-
+date_default_timezone_set('America/Sao_Paulo');
 $autor = Factory::autor();
 
 $autor->setNome($_POST['nome']);

@@ -33,6 +33,7 @@ header{
   align-items: center;
   justify-content: space-between;
   padding: 10px 30px;
+  margin-bottom: 30px;
 }
 header h1{
   color: white;
@@ -54,14 +55,14 @@ header a:hover{
   text-decoration: none;
   color: var(--cor03);
 }
-#headTitle{
+.headTitle{
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-family: var(--fonte-destaque);
   cursor: pointer;
 }
-#headTitle img{
+.headTitle img{
   width: 30px;
 }
 nav{
@@ -69,7 +70,7 @@ nav{
   align-items: end;
   justify-content: space-between;
 }
-nav #ul{
+nav .ul{
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -95,9 +96,29 @@ nav #ul{
 .dropdown-menu a:hover{
   color: black;
 }
-#sair{
+.sair{
   margin-right: 20px;
 }
-#sair:hover{
+.sair:hover{
   color: rgb(237, 102, 102);
+}
+
+.voltar{
+  margin: 10px 0px;
+  background-color: var(--cor03);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+.voltar a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+input:focus,
+input:hover {
+    border-color: var(--cor02);
+    background-color: #fff;
+    box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
 }
