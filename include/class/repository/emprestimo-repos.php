@@ -1,6 +1,6 @@
 <?php
 
-class EmprestimoRepos implements Repository{
+class EmprestimoRepository implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo";
@@ -26,6 +26,7 @@ class EmprestimoRepos implements Repository{
         }
         return $list;
     }
+    
     public static function listAtivos(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM emprestimo WHERE data_devolucao is null";
@@ -217,6 +218,19 @@ class EmprestimoRepos implements Repository{
         $query=$db->prepare($sql);
         $query->bindValue(":id",$id);
         $query->execute();
+    }
+
+    public static function countMes($mes){
+        $db = DB::getInstance();
+
+        $sql = 'SELECT count(*) FROM emprestimo WHERE MONTH(data_inclusao) = :mes and year(data_inclusao) = 2024'; 
+
+        $query = $db->prepare($sql);
+        $query->bindValue(":mes",$mes);
+        $query->execute();
+
+        $row = $query->fetch(PDO::FETCH_ASSOC);
+        return $row["count(*)"];
     }
 
     public static function countByLivros($livro_id){ // Conta quantos emprestimos existem com o mesmo livro

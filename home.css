@@ -10,17 +10,13 @@
 }
 .block{
     padding: 20px;
-    min-width: 20%;
+    min-width: 17%;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.422);
     height: 10vh;
     cursor: pointer;
+    background-color: rgb(242, 242, 242);
 }
-.b1{border-right: 10px solid rgb(198, 231, 16);}
-.b2{border-right: 10px solid rgb(3, 243, 243);}
-.b3{border-right: 10px solid rgb(100, 0, 128);}
-.b4{border-right: 10px solid rgb(201, 13, 44);}
-.b5{border-right: 10px solid rgb(51, 201, 13);}
 .cp{
     background-color: chocolate;
     height: 10vh;
@@ -31,11 +27,7 @@
 }
 .block p{
     padding: 0px;
-    margin: 0px;;
-}
-.block::before{
-    content: '';
-    background-color: rgb(124, 205, 43);
-    width: 20px;
-    height: 10vh;
+    margin: 0px;
+    text-decoration: underline;
+    font-weight: bold;
 }

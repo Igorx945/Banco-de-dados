@@ -1,6 +1,6 @@
 <?php
 
-class FuncionarioRepos implements Repository{
+class FuncionarioRepository implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM funcionario";

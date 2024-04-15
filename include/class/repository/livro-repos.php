@@ -1,9 +1,32 @@
 <?php
 
-class LivroRepos implements Repository{
+class LivroRepository implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM livro";
+        $query = $db->prepare($sql);
+        $query->execute();
+
+        $list = array();
+        foreach($query->fetchAll(PDO::FETCH_OBJ) as  $row){
+            $livro = new Livro; 
+            $livro->setId($row->id);
+            $livro->setTitulo($row->titulo);
+            $livro->setAno($row->ano);
+            $livro->setGenero($row->genero);
+            $livro->setIsbn($row->isbn);
+            $livro->setAutorId($row->autor_id);
+            $livro->setDataInclusao($row->data_inclusao);
+            $livro->setDataAlteracao($row->data_alteracao);
+            $livro->setinclusaoFuncionarioId($row->inclusao_funcionario_id);
+            $livro->setAlteracaoFuncionarioId($row->alteracao_funcionario_id);
+            $list[] = $livro;
+        }
+        return $list;
+    }
+    public static function listForNewEmpresLivro(){
+        $db = DB::getInstance();
+        $sql = "SELECT * FROM livro where id not in (select livro_id from emprestimo where data_devolucao is null)";
         $query = $db->prepare($sql);
         $query->execute();
 

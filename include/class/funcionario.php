@@ -18,34 +18,34 @@
     }
 
 
-    public function getnome(){
+    public function getNome(){
         return $this->nome;
     }
-    public function setnome($nome){
+    public function setNome($nome){
         $this->nome = $nome;
     }
 
 
-    public function getcpf(){
+    public function getCpf(){
         return $this->cpf;
     }
-    public function setcpf($cpf){
+    public function setCpf($cpf){
         $this->cpf = $cpf;
     }
 
 
-    public function gettelefone(){
+    public function getTelefone(){
         return $this->telefone;
     }
-    public function settelefone($telefone){
+    public function setTelefone($telefone){
         $this->telefone = $telefone;
     }
 
 
-    public function getsenha(){
+    public function getSenha(){
         return $this->senha;
     }
-    public function setsenha($senha, $is_hashed = false){
+    public function setSenha($senha, $is_hashed = false){
         if($is_hashed){
             $this->senha = $senha;
         } else{
@@ -55,10 +55,10 @@
     }
 
 
-    public function getemail(){
+    public function getEmail(){
         return $this->email;
     }
-    public function setemail($email){
+    public function setEmail($email){
         $this->email = $email;
     }
 
@@ -94,10 +94,31 @@
         $this->alteracao_funcionario_id = $alteracao_funcionario_id;
     }
     public function checkSenha($senha){
-        $senha = hash("sha256",$senha);
+        $senha = hash('sha256',$senha);
         if($senha == $this->senha){
             return true;
         }
         return false;
     }
+    public function decrypted(){
+        $senha = $this->senha;
+        
+    }
 }
+
+// public function checkSenha($senha){
+//     $senha = hash('sha256',$senha);
+//     if($senha == $this->senha){
+//         return true;
+//     }
+//     return false;
+// }
+
+// public function setSenha($senha, $is_hashed = false){
+//     if($is_hashed){
+//         $this->senha = $senha;
+//     } else{
+//         $this->senha = hash("sha256",$senha);
+//     }
+    
+// }

@@ -1,6 +1,6 @@
 <?php
 
-class AutorRepos implements Repository{
+class AutorRepository implements Repository{
     public static function listAll(){
         $db = DB::getInstance();
         $sql = "SELECT * FROM autor";
