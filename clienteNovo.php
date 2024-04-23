@@ -52,11 +52,11 @@ if (!Auth::isAuthenticated()) {
                         </div>
                         <div class="md-3">
                             <label for="nome" class="form-label">Data de Nascimento</label>
-                            <input type="date" name="data_nascimento" id="data_nascimento" class="form-control" required>
+                            <input type="text" name="dataNascimento" id="data_nascimento" class="form-control nascimento" required>
                         </div>
                         <div class="md-3">
                             <button type="submit" class="enviar">Salvar</button>
-                            <a class="novo" href="clientes.php">Voltar</a>
+                            <a class="novo" href="clienteList.php">Voltar</a>
 
 
                         </div>
@@ -66,7 +66,7 @@ if (!Auth::isAuthenticated()) {
         </div>
     </main>
     <script src="htts://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="jquery.mask.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
